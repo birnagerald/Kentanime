@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualités{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="container-fluid">
+            <div class="container-img">
+                <img src="http://placehold.it/1465x300" alt="">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="dropdown col">
+                    <button class="btn btn-categories dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Anime</a>
+                        <a class="dropdown-item" href="#">Manga</a>
+                        <a class="dropdown-item" href="#">Information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <section class="mt-3">
+                        
+                        <article class="mb-1 row">
+
+                            <div class="col-3">
+                                <div class="container-thumbnail">
+                                    <img class="thumbnail-news" src="http://placehold.it/200x120" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-9">
+                                <h2>Titre de l'article 01</h2>
+                                <div class="metadata"><span class="category">Anime</span><span class="author">Kenta</span><span class="dash">-</span><span class="date">06/01/2018</span></div>
+                                <div class="content">
+                                <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions,
+                                et empêche de se concentrer sur la mise en page elle-même.
+                                L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.'
+                                </p>
+                                </div>
+                            </div>
+                            
+                        </article>
+
+                        <article class="mb-1 mt-1 row">
+
+                            <div class="col-3">
+                                <div class="container-thumbnail">
+                                    <img class="thumbnail-news" src="http://placehold.it/200x120" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-9">
+                                <h2>Titre de l'article 02</h2>
+                                <div class="metadata"><span class="category">Anime</span><span class="author">Kenta</span><span class="dash">-</span><span class="date">06/01/2018</span></div>
+                                <div class="content">
+                                <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions,
+                                et empêche de se concentrer sur la mise en page elle-même.
+                                L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.'
+                                </p>
+                                </div>
+                            </div>
+                    
+                        </article>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

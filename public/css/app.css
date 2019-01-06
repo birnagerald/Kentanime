@@ -1,0 +1,95 @@
+body {
+    background-color: #f2f2f2;
+}
+
+h1, h2 {
+    font-weight: 1000;
+}
+
+.vertical-line-icon {
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    width: 2px;
+    height: 100vh;
+    background-color: #555555;
+}
+
+.author,
+.date,
+.dash {
+    font-weight: bold;
+    margin-left: 0.5em;
+}
+
+.category {
+    font-weight: bold;
+}
+
+.metadata {
+    display: flex;
+    flex: row;
+    justify-content: flex-start;
+}
+
+.navbar {
+    background-color: #e8e8e8 !important;
+    -moz-box-shadow: inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    color: #ee2e30 !important;
+}
+
+.nav-link {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #ee2e30 !important;
+    margin-left: 0.3em;
+}
+
+.container-img>img {
+    width: 100%;
+    margin-left: 15px;
+
+}
+
+/* .container-img {
+    -moz-box-shadow: 1px 3px 5px 0px #656565;
+    -webkit-box-shadow: 1px 3px 5px 0px #656565;
+    -o-box-shadow: 1px 3px 5px 0px #656565;
+    box-shadow: 1px 3px 5px 0px #656565;
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=161, Strength=5);
+} */
+
+.btn-categories {
+    border-radius: 0px;
+    border: 1.5px solid black;
+    color: #ee2e30;
+    background-color: white;
+    font-weight: bold;
+    margin-top: 2%;
+    width: 174px;
+
+
+}
+
+.thumbnail-news {
+    width: 100%;
+
+}
+.container-thumbnail {
+    border: 2px solid black;
+    
+    
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
