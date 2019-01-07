@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Kentanim{% endblock %}</title>
+        <title>{% block title %}Kentanime{% endblock %}</title>
         
 
         {% block stylesheets %}
@@ -13,7 +13,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Kentanim</a>
+            <a class="navbar-brand" href="/">Kentanime</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,7 +42,13 @@
                 <span class="vertical-line-icon" ></span>
                 </div>
                 <div class="col col-lg-2">
-                <h1>Top Airing</h1>
+                    <div class="d-flex flex-column" id="top-rating-block">
+                        <div class="p-2 bd-highlight"><h1>Top Rating</h1></div>
+                        <ol class="list-group">
+                            <li class="mb-4 rating-list-elements">Flex item 2</li>
+                            <li class="mb-4 rating-list-elements">Flex item 3</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
