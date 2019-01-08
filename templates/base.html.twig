@@ -3,55 +3,84 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Kentanime{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
 
         {% block stylesheets %}
          <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-         <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+         <link rel="stylesheet" href="{{ asset('/css/appdev.css') }}">
         {% endblock %}
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Kentanime</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/catalogue">Catalogue</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/actualites">Actualité</a>
-                    </li>
-                </ul>
-                {# <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form> #}
-            </div>
-        </nav>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-9">
-                    {% block body %}{% endblock %}
-                </div>
-                <div class="col-lg-auto">
-                <span class="vertical-line-icon" ></span>
-                </div>
-                <div class="col col-lg-2">
-                    <div class="d-flex flex-column" id="top-rating-block">
-                        <div class="p-2 bd-highlight"><h1>Top Rating</h1></div>
-                        <ol class="list-group">
-                            <li class="mb-4 rating-list-elements">Flex item 2</li>
-                            <li class="mb-4 rating-list-elements">Flex item 3</li>
-                        </ol>
+
+    <body id="{% block body_id %}{% endblock %}">
+
+        {% block header %}
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="/">Kentanime</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarColor03">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/catalogue">Catalogue</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/actualites">Actualité</a>
+                            </li>
+                        </ul>
+                        {# <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        </form> #}
+                    </div>
+                </nav>
+            </header>
+        {% endblock %}
+
+        <div class="container-fluid body-container">
+        {% block body %}
+               <div class="row">
+                    <div id="main" class="col-xl-9 col-md-10 p-l-r-0">
+
+                        {% block main %}{% endblock %}
+                    </div>
+
+                    <div id="sidebar" class="col-xl-3 col-md-2 p-l-r-0">
+                        {% block sidebar %}
+                            
+                        {% endblock %}
                     </div>
                 </div>
-            </div>
+        {% endblock %}
         </div>
+
+        {% block footer %}
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div id="footer-copyright" class="col-md-6">
+                            <p>2019 - Kentanime</p>
+                        </div>
+                        <div id="footer-resources" class="col-md-6">
+                            <p>
+                                <a href="#" title="Symfony Twitter">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="#" title="SensioLabs Facebook">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

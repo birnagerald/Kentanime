@@ -1,83 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actualités{% endblock %}
+{% block body_id 'blog_index' %}
 
-{% block body %}
-<div class="container-fluid">
-    <div class="row">
+{% block main %}
+    <div class="test-main">
 
-        <div class="container-fluid">
-            <div class="container-img">
-                <img src="http://placehold.it/1465x300" alt="">
-            </div>
-        </div>
 
-        <div class="container">
+        <div class="container container-article">
             <div class="row">
-                <div class="dropdown col">
-                    <button class="btn btn-categories dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categories
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Anime</a>
-                        <a class="dropdown-item" href="#">Manga</a>
-                        <a class="dropdown-item" href="#">Information</a>
+                <div class="col-xl-3">
+                    <div class="container-thumbnail d-flex justify-content-center">
+                        <img width="400" height="400" src="https://static.next-episode.net/tv-shows-images/huge/irozuku-sekai-no-ashita-kara.jpg">
                     </div>
                 </div>
-            </div>
-        </div>
+                <article class="post col-xl-9">
+                    <h2>
+                        <a href="#">
+                        Nous avons terminé Irozuku !
+                        </a>
+                    </h2>
 
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <section class="mt-3">
+                    <p class="post-metadata">
+                        <span class="metadata">anime</span><span class="metadata">Team</span><span class="metadata">-</span><span class="metadata">13/01/2019</span>
                         
-                        <article class="mb-1 mt-1 row">
+                    </p>
 
-                            <div class="col">
-                                <div class="thumbnails">
-                                    <img class="thumbnail-news" src="http://placehold.it/200x120" alt="">
-                                </div>
-                            </div>
+                    <p>Wow ceci est un texte écrit avec beaucoup d'imagination, merci d'avoir suivie irozuku sekai no nashitan kara chez nous. Nous avons fait en sorte de toujours être pontuel sur les sorties tout en vous fournissant la meilleur qualité possible.</p>
 
-                            <div class="col-9">
-                                <a href="{{ path('news_show') }}" class="news-title-link"><h2>Titre de l'article 01</h2></a>
-                                <div class="metadata"><span class="category">Anime</span><span class="author">Kenta</span><span class="dash">-</span><span class="date">06/01/2018</span></div>
-                                <div class="content">
-                                <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions,
-                                et empêche de se concentrer sur la mise en ...
-                                </p>
-                                </div>
-                            </div>
-                            
-                        </article>
-
-                        <article class="mb-1 mt-1 row">
-
-                            <div class="col">
-                                <div class="thumbnails">
-                                    <img class="thumbnail-news" src="http://placehold.it/200x120" alt="">
-                                </div>
-                            </div>
-
-                            <div class="col-9">
-                                <a href="{{ path('news_show') }}" class="news-title-link"><h2>Titre de l'article 02</h2></a>
-                                <div class="metadata"><span class="category">Anime</span><span class="author">Kenta</span><span class="dash">-</span><span class="date">06/01/2018</span></div>
-                                <div class="content">
-                                <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions,
-                                et empêche de se concentrer sur la mise en ...
-                                </p>
-                                </div>
-                            </div>
-                    
-                        </article>
-
-                    </section>
-                </div>
+                        
+                </article>
             </div>
         </div>
+        <div class="container container-article">
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="container-thumbnail d-flex justify-content-center">
+                        <img width="400" height="400" src="https://placehold.it/200x120">
+                    </div>
+                </div>
+                <article class="post col-xl-9">
+                    <h2>
+                        <a href="#">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit
+                        </a>
+                    </h2>
 
+                    <p class="post-metadata">
+                        <span class="metadata">anime</span><span class="metadata">Kenta</span><span class="metadata">-</span><span class="metadata">08/01/2019</span>
+                        
+                    </p>
 
+                    <p>Urna nisl sollicitudin id varius orci quam id turpis. Pellentesque vitae velit ex. Ubi est barbatus nix. Lorem ipsum dolor sit amet consectetur adipiscing elit. Pellentesque et sapien pulvinar consectetur. Mauris dapibus risus quis suscipit vulputate.</p>
+
+                        
+                </article>
+            </div>
+        </div>
     </div>
-</div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="test-sidebar">
+    </div>
 {% endblock %}

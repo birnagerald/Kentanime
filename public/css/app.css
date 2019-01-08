@@ -1,3 +1,9 @@
+@media (max-width: 992px) {
+    .hd-responsive {
+        display: none;
+    }
+}
+
 body {
     background-color: #1a1a1a;
 }
@@ -41,7 +47,7 @@ h2 {
 }
 
 .navbar {
-    background-color: black !important;
+    background-color: rgba(0, 0, 0, 0.205) !important;
 }
 
 .navbar-brand {
@@ -60,7 +66,7 @@ h2 {
 
 .container-img>img {
     width: 100%;
-    margin-left: 15px;
+    
 
 }
 
@@ -102,3 +108,28 @@ h2 {
     color: #e3474b;
     text-decoration: none;
 }
+
+/* TEST */
+
+#bloc-droit {
+    background-color: rgb(255, 204, 204);
+}
+
+#bloc-bar {
+    background-color: rgb(179, 179, 255);
+    padding: 0;
+}
+
+#bloc-main {
+    background-color: rgb(153, 255, 204);
+    height: 100vh;
+}
+
+.test-slider {
+    background-color: rgb(150, 29, 35);
+    width: 100%;
+    height: 300px;
+    display: block;
+}
+
+/* TEST */
