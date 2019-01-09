@@ -6,62 +6,33 @@
 
 {% block main %}
     <div class="test-main">
-
-
-        <div class="container container-article">
-            <div class="row">
-                <div class="col-xl-3">
-                    <div class="container-thumbnail d-flex justify-content-center">
-                        <img width="400" height="400" src="https://static.next-episode.net/tv-shows-images/huge/irozuku-sekai-no-ashita-kara.jpg">
+        
+        {% for post in posts %}
+            <div class="container container-article">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <div class="container-thumbnail d-flex justify-content-center">
+                            <img src="{{ post.image }}">
+                        </div>
                     </div>
+                    <article class="post col-xl-9">
+                        <h2>
+                            <a href="/actualites/show/{{ post.id }}">
+                            {{ post.title }}
+                            </a>
+                        </h2>
+
+                        <p class="post-metadata">
+                            <span class="metadata">{{ post.category }}</span><span class="metadata">{{ post.author }}</span><span class="metadata">-</span><span class="metadata">{{ post.createdAt | date('d/m/y') }}</span>
+                            
+                        </p>
+
+                        <p>{{ post.content|length > 200 ? post.content|slice(0, 50) ~ '...' : post.content  }}</p>
+
+                    </article>
                 </div>
-                <article class="post col-xl-9">
-                    <h2>
-                        <a href="#">
-                        Nous avons terminé Irozuku !
-                        </a>
-                    </h2>
-
-                    <p class="post-metadata">
-                        <span class="metadata">anime</span><span class="metadata">Team</span><span class="metadata">-</span><span class="metadata">13/01/2019</span>
-                        
-                    </p>
-
-                    <p>Wow ceci est un texte écrit avec beaucoup d'imagination, merci d'avoir suivie irozuku sekai no nashitan kara chez nous. Nous avons fait en sorte de toujours être pontuel sur les sorties tout en vous fournissant la meilleur qualité possible.</p>
-
-                        
-                </article>
             </div>
-        </div>
-        <div class="container container-article">
-            <div class="row">
-                <div class="col-xl-3">
-                    <div class="container-thumbnail d-flex justify-content-center">
-                        <img width="400" height="400" src="https://placehold.it/200x120">
-                    </div>
-                </div>
-                <article class="post col-xl-9">
-                    <h2>
-                        <a href="#">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit
-                        </a>
-                    </h2>
-
-                    <p class="post-metadata">
-                        <span class="metadata">anime</span><span class="metadata">Kenta</span><span class="metadata">-</span><span class="metadata">08/01/2019</span>
-                        
-                    </p>
-
-                    <p>Urna nisl sollicitudin id varius orci quam id turpis. Pellentesque vitae velit ex. Ubi est barbatus nix. Lorem ipsum dolor sit amet consectetur adipiscing elit. Pellentesque et sapien pulvinar consectetur. Mauris dapibus risus quis suscipit vulputate.</p>
-
-                        
-                </article>
-            </div>
-        </div>
-    </div>
-{% endblock %}
-
-{% block sidebar %}
-    <div class="test-sidebar">
+        {% endfor %}
+        
     </div>
 {% endblock %}
