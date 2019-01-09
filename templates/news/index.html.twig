@@ -16,14 +16,14 @@
                         </div>
                     </div>
                     <article class="post col-xl-9">
-                        <h2>
-                            <a href="/actualites/show/{{ post.id }}">
+                        <h1>
+                            <a href="{{ path('news_show', {'id': post.id}) }}">
                             {{ post.title }}
                             </a>
-                        </h2>
+                        </h1>
 
                         <p class="post-metadata">
-                            <span class="metadata">{{ post.category }}</span><span class="metadata">{{ post.author }}</span><span class="metadata">-</span><span class="metadata">{{ post.createdAt | date('d/m/y') }}</span>
+                            <span class="metadata-categories">{{ post.category }}</span> <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata">{{ post.createdAt | date('d/m/y') }}</span>
                             
                         </p>
 

@@ -3,34 +3,49 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body_id 'blog_index' %}
-
 {% block main %}
-    <div class="test-main">
-        
-            <div class="container container-article">
-                <div class="d-flex flex-column">
-                    <div class="mx-auto">
-                        <div class="container-thumbnail-show mb-5">
-                            <img src="{{ post.image }}">
+{% if post.category == 'natus' %}
+    
+        <div class="test-main">
+            
+                <div class="container container-article">
+                    <div class="d-flex flex-column">
+                        <div class="mx-auto">
+                            <div class="container-thumbnail-show mb-5">
+                                <img src="{{ post.image }}">
+                            </div>
                         </div>
+                        <article class="post d-flex flex-column">
+                            <h1 class="mx-auto title-show">
+                                <a href="#">
+                                {{ post.title }}
+                                </a>
+                            </h1>
+
+                            <p class="mx-auto">{{ post.content| nl2br }}</p>
+
+                            <p class="post-metadata ml-auto">
+                                <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span> catégorie : <span class="metadata-categories"> {{ post.category }}</span>
+                                
+                            </p>
+
+                        </article>
                     </div>
-                    <article class="post d-flex flex-column">
-                        <h2 class="mx-auto">
-                            <a href="#">
-                            {{ post.title }}
-                            </a>
-                        </h2>
-
-                        <p class="post-metadata mx-auto">
-                            <span class="metadata">{{ post.category }}</span><span class="metadata">{{ post.author }}</span><span class="metadata">-</span><span class="metadata">{{ post.createdAt | date('d/m/y') }}</span>
-                            
-                        </p>
-
-                        <p class="mx-auto">{{ post.content }}</p>
-
-                    </article>
                 </div>
-            </div>
-        
-    </div>
+            
+        </div>
+    
+{% else %}
+   
+        <div class="test-main">
+            
+                <div class="container container-article">
+                    <div class="d-flex flex-column">
+                        <p>TEST</p>
+                    </div>
+                </div>
+            
+        </div>
+    
+{% endif %}
 {% endblock %}

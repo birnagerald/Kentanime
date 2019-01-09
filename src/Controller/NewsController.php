@@ -5,15 +5,15 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Posts;
+use App\Repository\PostsRepository;
 
 class NewsController extends AbstractController
 {
     /**
      * @Route("/actualites", name="news")
      */
-    public function index()
+    public function index(PostsRepository $repo)
     {
-        $repo = $this->getDoctrine()->getRepository(Posts::class);
         $posts = $repo->findAll();
         return $this->render('news/index.html.twig', [
             'posts' => $posts,
@@ -23,10 +23,9 @@ class NewsController extends AbstractController
     /**
      * @Route("/actualites/show/{id}", name="news_show")
      */
-    public function show($id)
+    public function show(Posts $post)
     {   
-        $repo = $this->getDoctrine()->getRepository(Posts::class);
-        $post = $repo->find($id);
+        
         return $this->render('news/show.html.twig',[
             'post' => $post,
         ]);
