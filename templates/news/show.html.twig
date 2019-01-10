@@ -41,7 +41,50 @@
             
                 <div class="container container-article">
                     <div class="d-flex flex-column">
-                        <p>TEST</p>
+                        <div class="mx-auto">
+                            <div class="container-thumbnail-show mb-5">
+                                <img src="{{ post.image }}">
+                            </div>
+                        </div>
+                        <article class="post d-flex flex-column">
+                            <h1 class="mx-auto title-show">
+                                <a href="#">
+                                {{ post.title }}
+                                </a>
+                            </h1>
+
+                            <p class="mx-auto">{{ post.content| nl2br }}</p>
+
+                            <p class="post-metadata ml-auto">
+                                <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span> catégorie : <span class="metadata-categories"> {{ post.category }}</span>
+                                
+                            </p>
+
+                        </article>
+
+                        <div class="d-flex flex-row mb-3 mt-2">
+                            <hr class="sep-horizontal-bar"><h4 class="">PAGE PROJET</h4><hr class="sep-horizontal-bar">
+
+                        </div>
+
+                        <div class="d-flex flex-row mb-5">
+                            <a href="#" class="BUTTON_KZF mx-auto">Titre de la série</a>
+                        </div>
+
+                        <div class="d-flex flex-row mb-3 mt-2">
+                            <hr class="sep-horizontal-bar"><h4 class="">LIENS DE TÉLÉCHARGEMENT</h4><hr class="sep-horizontal-bar">
+                        
+                        </div>
+
+                        <div class="d-flex flex-row mb-5">
+                            <a href="#" class="BUTTON_KZF mx-auto">10 bits MKV</a>
+                        </div>
+
+                        <div class="d-flex flex-row mb-3 mt-2">
+                            <hr class="sep-horizontal-bar"><h4 class="">NOTER L'ÉPISODE</h4><hr class="sep-horizontal-bar">
+
+                        </div>
+
                     </div>
                 </div>
             

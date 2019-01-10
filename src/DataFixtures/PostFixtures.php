@@ -17,7 +17,7 @@ class PostFixtures extends Fixture
         for($i = 1; $i <= 10; $i++){
             $post = new Posts();
             $post->setTitle($faker->sentence)
-                    ->setContent($faker->text($maxNbChars = 5000))
+                    ->setContent($faker->paragraphs($nb = 3, $asText = true))
                     ->setImage($faker->imageUrl($width = 640, $height = 480))
                     ->setAuthor($faker->name)
                     ->setCategory($faker->word)

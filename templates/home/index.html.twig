@@ -14,13 +14,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://placehold.it/1400x350" alt="First slide">
+                    <img class="d-block w-100" src="https://www.everycloudtech.com/sites/default/files/white-clouds-and-blue-sky.jpg" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                    <img class="d-block w-100" src="https://placehold.it/1400x350" alt="Second slide">
+                    <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg9JCZpDQCRQHexkeee45ipG68mN3UTrKJRkX-yF-Irll-gfVd" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                    <img class="d-block w-100" src="https://placehold.it/1400x350" alt="Third slide">
+                    <img class="d-block w-100" src="http://votreimageenlumiere.fr/wp-content/uploads/2017/03/suivi-apres-coaching-en-image-evolution-marguerite-banner.jpg" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -36,83 +36,42 @@
         </div>
 
 
-        <div class="container container-article">
-            <div class="row">
-                <div class="col-xl-3">
-                    <div class="container-thumbnail d-flex justify-content-center">
-                        <img src="https://static.next-episode.net/tv-shows-images/huge/irozuku-sekai-no-ashita-kara.jpg">
+        
+        {% for post in posts %}
+            
+            <div class="container container-article">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <div class="container-thumbnail d-flex justify-content-center">
+                            <img src="{{ post.image }}">
+                        </div>
                     </div>
+                    <article class="post col-xl-9">
+                        <h1>
+                            <a href="{{ path('news_show', {'id': post.id}) }}">
+                            {{ post.title }}
+                            </a>
+                        </h1>
+
+                        <p class="post-metadata">
+                            <span class="metadata-categories">{{ post.category }}</span> <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata">{{ post.createdAt | date('d/m/y') }}</span>
+                            
+                        </p>
+
+                        <p>{{ post.content|length > 200 ? post.content|slice(0, 50) ~ '...' : post.content  }}</p>
+
+                    </article>
                 </div>
-                <article class="post col-xl-9">
-                    <h2>
-                        <a href="#">
-                        Nous avons terminé Irozuku !
-                        </a>
-                    </h2>
-
-                    <p class="post-metadata">
-                        <span class="metadata-categories">anime</span> <span class="metadata-author">Team</span><span class="metadata">-</span><span class="metadata">13/01/2019</span>
-                        
-                    </p>
-
-                    <p>Wow ceci est un texte écrit avec beaucoup d'imagination, merci d'avoir suivie irozuku sekai no nashitan kara chez nous. Nous avons fait en sorte de toujours être pontuel sur les sorties tout en vous fournissant la meilleur qualité possible.</p>
-
-                        
-                </article>
             </div>
-        </div>
 
-        <div class="container container-article">
-            <div class="row">
-                <div class="col-xl-3">
-                    <div class="container-thumbnail d-flex justify-content-center">
-                        <img src="https://placehold.it/200x120">
-                    </div>
+            
+        {% endfor %}
+
+            <div class="container pagination">
+                <div class="row mx-auto">
+                    {{ knp_pagination_render(posts) }}
                 </div>
-                <article class="post col-xl-9">
-                    <h2>
-                        <a href="#">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit
-                        </a>
-                    </h2>
-
-                    <p class="post-metadata">
-                        <span class="metadata">anime</span><span class="metadata">Kenta</span><span class="metadata">-</span><span class="metadata">08/01/2019</span>
-                        
-                    </p>
-
-                    <p>Urna nisl sollicitudin id varius orci quam id turpis. Pellentesque vitae velit ex. Ubi est barbatus nix. Lorem ipsum dolor sit amet consectetur adipiscing elit. Pellentesque et sapien pulvinar consectetur. Mauris dapibus risus quis suscipit vulputate.</p>
-
-                        
-                </article>
             </div>
-        </div>
-
-        <div class="container container-article">
-            <div class="row">
-                <div class="col-xl-3">
-                    <div class="container-thumbnail d-flex justify-content-center">
-                        <img src="https://placehold.it/200x120">
-                    </div>
-                </div>
-                <article class="post col-xl-9">
-                    <h2>
-                        <a href="#">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit
-                        </a>
-                    </h2>
-
-                    <p class="post-metadata">
-                        <span class="metadata">anime</span><span class="metadata">Kenta</span><span class="metadata">-</span><span class="metadata">08/01/2019</span>
-                        
-                    </p>
-
-                    <p>Urna nisl sollicitudin id varius orci quam id turpis. Pellentesque vitae velit ex. Ubi est barbatus nix. Lorem ipsum dolor sit amet consectetur adipiscing elit. Pellentesque et sapien pulvinar consectetur. Mauris dapibus risus quis suscipit vulputate.</p>
-
-                        
-                </article>
-            </div>
-        </div>
 
     </div>
 {% endblock %}
