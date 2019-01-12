@@ -4,7 +4,7 @@
 
 {% block body_id 'blog_index' %}
 {% block main %}
-{% if post.category == 'natus' %}
+{% if post.category.title == 'dignissimos' %}
     
         <div class="test-main">
             
@@ -25,12 +25,13 @@
                             <p class="mx-auto">{{ post.content| nl2br }}</p>
 
                             <p class="post-metadata ml-auto">
-                                <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span> catégorie : <span class="metadata-categories"> {{ post.category }}</span>
+                                <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span> catégorie : <span class="metadata-categories"> {{ post.category.title }}</span>
                                 
                             </p>
 
                         </article>
                     </div>
+                     {% include 'news/_comment.html.twig' %}
                 </div>
             
         </div>
@@ -56,7 +57,7 @@
                             <p class="mx-auto">{{ post.content| nl2br }}</p>
 
                             <p class="post-metadata ml-auto">
-                                <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span> catégorie : <span class="metadata-categories"> {{ post.category }}</span>
+                                <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span> catégorie : <span class="metadata-categories"> {{ post.category.title }}</span>
                                 
                             </p>
 
@@ -86,9 +87,15 @@
                         </div>
 
                     </div>
+
+                     {% include 'news/_comment.html.twig' %}
                 </div>
+
+                
             
         </div>
+
+        
     
 {% endif %}
 {% endblock %}

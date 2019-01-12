@@ -1,0 +1,24 @@
+<div class="d-flex flex-row mb-3 mt-2">
+    <hr class="sep-horizontal-bar"><h4 class="">Commentaires</h4><hr class="sep-horizontal-bar">
+</div>
+
+<div class="commentaire mt-5">
+    {% for comment in post.comments %}
+    <div class="comment">
+        <div class="row">
+            <div class="div col-12">
+                <p class="post-metadata ml-auto">
+                                <span class="metadata-author">{{ comment.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ comment.createdAt | date('d/m/y à h:i') }}</span>
+                                
+                            </p>
+
+            </div>
+
+            <div class="div col-12 mb-5">
+                {{comment.content}}
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
