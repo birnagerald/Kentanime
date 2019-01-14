@@ -16,4 +16,13 @@ class PagesController extends AbstractController
             'controller_name' => 'PagesController',
         ]);
     }
+
+    /**
+     * @Route("/catalogue/show/{id}", name="page_show")
+     */
+    public function show()
+    {   
+        
+        
+    }
 }
