@@ -24,10 +24,32 @@ class PagesController extends AbstractController
      * @Route("/catalogue/show/{id}", name="page_show")
      */
     public function show(Page $page)
-    {   
-        return $this->render('pages/show.html.twig',[
+    {
+         
+        $choice = (page::CLASSIFICATION);
+        switch ($page->getClassification()) {
+            case 0:
+                $choice = $choice[0];
+                break;
+            case 1:
+                $choice = $choice[1];
+                break;
+            case 2:
+                $choice = $choice[2];
+                break;
+            case 3:
+                $choice = $choice[3];
+                break;
+            default:
+                $choice = $choice[0];
+        }
+        return $this->render('pages/show.html.twig', [
             'page' => $page,
+            'choice' => $choice
         ]);
-        
+
     }
+
+  
+
 }
