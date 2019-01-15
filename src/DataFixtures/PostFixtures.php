@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Comment;
+use App\Entity\Page;
 use App\Entity\Posts;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -25,6 +26,19 @@ class PostFixtures extends Fixture
 
             $manager->persist($category);
 
+            // Créer 2 pages
+
+            for ($j = 1; $j <= 2; $j++) {
+                $page = new Page();
+                $page->setTitle($faker->word)
+                    ->setContent($faker->paragraphs($nb = 2, $asText = true))
+                    ->setImage($faker->imageUrl($width = 1400, $height = 350))
+                    ->setAuthor($faker->name)
+                    ->setCategory($category)
+                    ->setClassification(0);
+
+                $manager->persist($page);
+            }
             // Créer entre  4-6 posts
 
             for ($j = 1; $j <= mt_rand(4, 6); $j++) {

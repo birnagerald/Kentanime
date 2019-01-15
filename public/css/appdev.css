@@ -246,6 +246,15 @@ footer #footer-ressources {
     color: white;
 }
 
+.post-metadata-page .metadata-categories {
+    border: 1px solid grey;
+    background-color: #0000003d;
+    text-align: center;
+    font-weight: 1000;
+    padding: 0 2px 2px 2px;
+    color: white;
+}
+
 .fa-copyright {
     padding-top: 2px;
 }
@@ -416,6 +425,11 @@ body#blog_index div.container-article {
 body#blog_index .post-metadata {
     font-size: 16px;
     margin-bottom: 8px;
+}
+
+body#blog_index .post-metadata-page {
+    font-size: 1.2em;
+    font-weight: 1000;
 }
 
 body#blog_index .post-tags .label-default {

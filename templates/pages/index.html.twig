@@ -9,7 +9,7 @@
         
         <div class="container-fluid p-l-r-0">
             <div class="container-banniere">
-                <img class="w-100" src="https://i.imgur.com/FvcXwoX.jpg" alt="Page img">
+                <img class="w-100" src="{{ asset('css/images/catalogue-banner.jpg') }}" alt="Catalogue img">
             </div>
 
         </div>
@@ -17,16 +17,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="page-listing d-flex flex-row flex-wrap">
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
-                    <div class="container-thumbnail-catalogue ml-3"><figure><img src="https://fakeimg.pl/400x400/" alt="" href=""></img><figcaption><h2>Test</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Anime</span></p></figcaption></figure></div>
+                    {% for page in pages %}
+                        <div class="container-thumbnail-catalogue ml-3"><figure><a href="{{ path('page_show', {'id': page.id}) }}"><img src="{{page.image}}" alt=""></img></a><figcaption><h2>{{page.title}}</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">{{page.category.title}}</span></p></figcaption></figure></div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
