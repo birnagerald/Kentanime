@@ -1,0 +1,20 @@
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col md-4">{{ form_row(form.title) }}</div>    
+        </div>
+
+        <div class="row">
+            <div class="col md-4">{{ form_row(form.description) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col md-2">{{ form_row(form.anneeDeProduction) }}</div>
+            <div class="col md-2">{{ form_row(form.studio) }}</div>
+            <div class="col md-2">{{ form_row(form.classification) }}</div>
+        </div>
+
+            
+        {{ form_rest(form) }}
+        <button class="btn btn-primary">{{ button |default('Enregistrer') }}</button>
+
+        {{ form_end(form) }}

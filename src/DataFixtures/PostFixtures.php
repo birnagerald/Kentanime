@@ -32,10 +32,9 @@ class PostFixtures extends Fixture
                 $page = new Page();
                 $page->setTitle($faker->word)
                     ->setContent($faker->paragraphs($nb = 2, $asText = true))
-                    ->setImage($faker->imageUrl($width = 1400, $height = 350))
                     ->setAuthor($faker->name)
                     ->setCategory($category)
-                    ->setClassification(0);
+                    ->setClassification(mt_rand(0, 3));
 
                 $manager->persist($page);
             }
@@ -45,7 +44,6 @@ class PostFixtures extends Fixture
                 $post = new Posts();
                 $post->setTitle($faker->sentence)
                     ->setContent($faker->paragraphs($nb = 3, $asText = true))
-                    ->setImage($faker->imageUrl($width = 640, $height = 480))
                     ->setAuthor($faker->name)
                     ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                     ->setCategory($category);

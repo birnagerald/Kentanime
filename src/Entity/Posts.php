@@ -5,9 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostsRepository")
+ * @Vich\Uploadable
  */
 class Posts
 {
@@ -27,11 +29,6 @@ class Posts
      * @ORM\Column(type="text")
      */
     private $content;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
 
     /**
      * @ORM\Column(type="datetime")
@@ -84,18 +81,6 @@ class Posts
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }

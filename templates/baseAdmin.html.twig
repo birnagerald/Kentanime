@@ -48,16 +48,9 @@
         <div class="container-fluid body-container">
         {% block body %}
                <div class="row">
-                    <div id="main" class="col-xl-9 col-md-12 p-l-r-0">
+                    <div id="main" class="col p-l-r-0">
 
                         {% block main %}{% endblock %}
-                    </div>
-
-                    <div id="sidebar" class="col-xl-3 col-md-0 p-l-r-0">
-                        {% block sidebar %}
-                             <div class="test-sidebar">
-                                </div>
-                        {% endblock %}
                     </div>
                 </div>
         {% endblock %}

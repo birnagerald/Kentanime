@@ -10,12 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Page
 {   
 
-    const CLASSIFICATION = [
-        0 => 'Tout Public',
-        1 => '+12',
-        2 => '+16',
-        3 => '+18'
-    ];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -27,11 +21,6 @@ class Page
      * @ORM\Column(type="string", length=255)
      */
     private $title;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -87,18 +76,6 @@ class Page
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }

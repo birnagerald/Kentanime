@@ -1,0 +1,17 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Créer une page{% endblock %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}   
+
+    <div class="container mt-4">
+
+        <h1>Créer une page d'anime</h1>
+
+        {{ include ('admin/anime/_form.html.twig', {button: 'Créer'}) }}
+
+
+    </div>
+{% endblock %}

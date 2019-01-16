@@ -1,0 +1,57 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gérer les animes{% endblock %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}   
+
+    <div class="container mt-4">
+
+        <h1>Gérer les animes</h1>
+
+        {% for message in app.flashes('success') %}
+
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Titre</h1>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for anime in animes %}
+
+                <tr>
+                    <td>{{ anime.title }}</td>
+                    <td><a href="{{ path('admin_anime_edit', {id: anime.id}) }}" class="btn btn-secondary">Éditer</a>
+                    <form method="post" action="{{ path('admin_anime_delete', {id: anime.id}) }}" style="display: inline-block" onsubmit="return confirm('Confirmer la Supression ?')">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ anime.id) }}">
+                    <button class="btn btn-danger">Supprimer</button>
+                    </form>
+                    </td>
+                </tr>
+                
+                       
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('admin_anime_new') }}" class="btn btn-secondary">Créer</a>
+        </div>
+
+
+    </div>
+{% endblock %}
