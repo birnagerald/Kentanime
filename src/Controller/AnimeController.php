@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Anime;
 use App\Repository\AnimeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\EpisodeRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnimeController extends AbstractController
 {
@@ -25,9 +26,17 @@ class AnimeController extends AbstractController
 
     /**
      * @Route("/anime/show/{id}", name="anime_show")
+     * @param EpisodeRepository $repoEpisode
+     * @param Anime $anime
      */
-    public function show(Anime $anime)
-    {
+    public function show(Anime $anime, EpisodeRepository $repoEpisode)
+    {   
+        $episodes = $repoEpisode->findBy(
+            array('anime' => $anime->getId()), // Critere
+            array('created_at' => 'asc')  // Tri
+        );
+
+
         $choice = (Anime::CLASSIFICATION);
         switch ($anime->getClassification()) {
             case 0:
@@ -48,6 +57,7 @@ class AnimeController extends AbstractController
         return $this->render('anime/show.html.twig', [
             'anime' => $anime,
             'choice' => $choice,
+            'episodes' => $episodes
         ]);
     }
 }

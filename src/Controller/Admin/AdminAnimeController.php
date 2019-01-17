@@ -4,8 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Anime;
 use App\Form\AnimeType;
+use App\Form\EpisodeType;
 use App\Repository\AnimeRepository;
 use App\Repository\EpisodeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,19 +59,20 @@ class AdminAnimeController extends AbstractController
     /**
      * @Route("/admin/anime/edit/{id}", name="admin_anime_edit", methods="GET|POST")
      * @param Anime $anime
+     * @param Episode $episode
      * @param Request $request
-     * @param ObjectManager $em
+     * @param EntityManagerInterface $em
      * @param EpisodeRepository $repoEpisode
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Anime $anime, Request $request, ObjectManager $em, EpisodeRepository $repoEpisode)
+    public function edit(Anime $anime, Request $request, EntityManagerInterface $em, EpisodeRepository $repoEpisode)
     {
         $episodes = $repoEpisode->findBy(
             array('anime' => $anime->getId()), // Critere
             array('created_at' => 'desc')  // Tri
         );
         
-
+        
         $form = $this->createForm(AnimeType::class, $anime);
         $form->handleRequest($request);
 

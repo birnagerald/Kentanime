@@ -49,10 +49,16 @@
 
         </div>
 
-        <div class="d-flex flex-row mb-5 justify-content-center">
-            <p class="ddl-episode-text">Épisode 01 :</p>
-            <a href="#" class="BUTTON_KZF">10 bits MKV</a>
-        </div>
+        {% for episode in episodes %}
+
+                <div class="d-flex flex-row mb-5 justify-content-center">
+                    <p class="ddl-episode-text">Épisode {{episode.numero}} :</p>
+                    <a href="{{ episode.lien }}" target="_blank" class="BUTTON_KZF">10 bits MKV</a>
+                </div>
+                
+                       
+                {% endfor %}
+        
 
         <div class="d-flex flex-row mb-3 mt-2">
             <hr class="sep-horizontal-bar"><h4 class="">NOTER LA SÉRIE</h4><hr class="sep-horizontal-bar">
