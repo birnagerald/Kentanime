@@ -1,0 +1,13 @@
+{{ form_start(registrationForm) }}
+        <div class="row">
+            <div class="col md-4">{{ form_row(registrationForm.username) }}</div>    
+        </div>
+
+        <div class="row">
+            <div class="col md-4">{{ form_row(registrationForm.plainPassword) }}</div>
+        </div>
+
+        
+        <button class="btn btn-primary">{{ button |default('Enregistrer') }}</button>
+
+        {{ form_end(registrationForm) }}

@@ -34,23 +34,29 @@
                             </li>
                         </ul>
                         {% if app.user %}
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
-                            </li>
-                        </ul>
+
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                                </li>
+                            </ul>
+
                         {% else %}
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('security_login') }}">Connexion</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
-                            </li>
-                        </ul>
+
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                                </li>
+                            </ul>
+
                         {% endif %}
-
-
+                        {# <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        </form> #}
                     </div>
                 </nav>
             </header>
