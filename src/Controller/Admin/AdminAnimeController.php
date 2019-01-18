@@ -7,7 +7,6 @@ use App\Form\AnimeType;
 use App\Form\EpisodeType;
 use App\Repository\AnimeRepository;
 use App\Repository\EpisodeRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,7 +64,7 @@ class AdminAnimeController extends AbstractController
      * @param EpisodeRepository $repoEpisode
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Anime $anime, Request $request, EntityManagerInterface $em, EpisodeRepository $repoEpisode)
+    public function edit(Anime $anime, Request $request, ObjectManager $em, EpisodeRepository $repoEpisode)
     {
         $episodes = $repoEpisode->findBy(
             array('anime' => $anime->getId()), // Critere

@@ -319,6 +319,9 @@ footer #footer-ressources {
     margin-right: 15px;
 }
 
+.form-error-icon.badge.badge-danger {
+    display: none;
+}
 
 /* Button
    ------------------------------------------------------------------------- */
