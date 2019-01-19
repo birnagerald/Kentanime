@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Connexion{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body_id 'blog_index' %}
 
@@ -9,10 +9,10 @@
 
     <div class="container d-flex flex-column align-items-center mt-4">
 
-        <h1 class="mb-5">Connexion</h1>
+        <h1 class="mb-5">Inscription</h1>
 
 
-        {{ include ('security/_loginForm.html.twig', {button: 'Se connecter'}) }}
+        {{ include ('registration/_registerForm.html.twig', {button: 'S\'inscrire'}) }}
     </div>
         
 

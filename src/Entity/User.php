@@ -3,15 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(
- * fields= {"email"},
- * message= "L'email que vous avez indiquée est déjà utilisée !")
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface
 {
@@ -23,47 +20,34 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Email()
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min="5", minMessage="Votre mot de passe doit faire au minimum 5 caractères")
+     * @ORM\Column(type="json")
      */
-    private $password;
+    private $roles = [];
 
     /**
-     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tappé le même mot de passe")
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $confirm_password;
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->username;
+        return (string) $this->username;
     }
 
     public function setUsername(string $username): self
@@ -73,9 +57,31 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->password;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -85,45 +91,20 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getConfirmPassword(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
     {
-        return $this->confirm_password;
+        // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
-    public function setConfirmPassword(string $confirm_password): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        $this->confirm_password = $confirm_password;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
-
-    public function eraseCredentials() {
-    }
-
-    public function getSalt(){
-
-    }
-
-    public function getRoles(){
-
-        return ['ROLE_USER'];
-
-    }
-
-    public function serialize(){
-        return serialize([
-            $this->id,
-            $this->username,
-            $this->password
-        ]);
-    }
-
-    public function unserialize($serialized){
-        list(
-            $this->id,
-            $this->username,
-            $this->password
-        ) = unserialize($serialized,['allowed_classes' => false]);
-    }
-
 }
