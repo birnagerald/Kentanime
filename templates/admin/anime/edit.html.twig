@@ -10,32 +10,15 @@
 
         <h1>Éditer la page de {{anime.title}}</h1>
 
+        {% for message in app.flashes('success') %}
+
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
         {{ include ('admin/anime/_form.html.twig', {button: 'Éditer'}) }}
-
-      <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Titre</h1>
-                    <th>Numero</th>
-                    <th>Lien</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for episode in episodes %}
-
-                <tr>
-                    <td>{{ episode.titre }}</td>
-                    <td>{{ episode.numero }}</td>
-                    <td>{{ episode.lien }}</td>
-                </tr>
-                
-                       
-                {% endfor %}
-
-
-            </tbody>
-        </table>
 
 
     </div>

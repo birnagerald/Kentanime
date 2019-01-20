@@ -14,9 +14,7 @@ class EpisodeType extends AbstractType
         $builder
             ->add('titre')
             ->add('numero')
-            ->add('lien')
-            ->add('anime')
-        ;
+            ->add('lien');
     }
 
     public function configureOptions(OptionsResolver $resolver)

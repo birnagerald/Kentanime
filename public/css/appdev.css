@@ -509,3 +509,14 @@ figcaption h2 {
     padding: 3% 0 0 3%;
     text-align: center;
 }
+
+#main > div > form > div.container.mt-4 > ul > h2{
+
+    font-size: 3em !important;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+li {
+    list-style: none;
+}

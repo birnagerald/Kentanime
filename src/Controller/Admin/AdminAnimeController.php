@@ -4,14 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\Anime;
 use App\Form\AnimeType;
-use App\Form\EpisodeType;
 use App\Repository\AnimeRepository;
-use App\Repository\EpisodeRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminAnimeController extends AbstractController
 {
@@ -24,7 +22,7 @@ class AdminAnimeController extends AbstractController
     {
 
         $animes = $repo->findAll();
-        
+
         return $this->render('admin/anime/index.html.twig', compact('animes'));
     }
 
@@ -34,9 +32,8 @@ class AdminAnimeController extends AbstractController
      * @param ObjectManager $em
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    
-    public function new(Request $request, ObjectManager $em)
-    {
+
+    function new (Request $request, ObjectManager $em) {
         $anime = new Anime;
         $form = $this->createForm(AnimeType::class, $anime);
         $form->handleRequest($request);
@@ -50,28 +47,21 @@ class AdminAnimeController extends AbstractController
         }
         return $this->render('admin/anime/new.html.twig', [
             'anime' => $anime,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
-
     /**
-     * @Route("/admin/anime/edit/{id}", name="admin_anime_edit", methods="GET|POST")
+     * @Route("/admin/anime/edit/{id}", name="admin_anime_edit", methods="GET|POST|PUT")
      * @param Anime $anime
      * @param Episode $episode
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param EpisodeRepository $repoEpisode
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Anime $anime, Request $request, ObjectManager $em, EpisodeRepository $repoEpisode)
+    public function edit(Anime $anime, Request $request, ObjectManager $em)
     {
-        $episodes = $repoEpisode->findBy(
-            array('anime' => $anime->getId()), // Critere
-            array('created_at' => 'desc')  // Tri
-        );
-        
-        
+
         $form = $this->createForm(AnimeType::class, $anime);
         $form->handleRequest($request);
 
@@ -79,15 +69,13 @@ class AdminAnimeController extends AbstractController
             $this->em = $em;
             $this->em->flush();
             $this->addFlash('success', 'Page éditée avec succès');
-            return $this->redirectToRoute('admin_anime_index');
+
         }
         return $this->render('admin/anime/edit.html.twig', [
             'anime' => $anime,
-            'episodes' => $episodes,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
-
 
     /**
      * @Route("/admin/anime/delete/{id}", name="admin_anime_delete", methods="DELETE")
@@ -98,16 +86,15 @@ class AdminAnimeController extends AbstractController
      */
     public function delete(Anime $anime, Request $request, ObjectManager $em)
     {
-            if($this->isCsrfTokenValid('delete' . $anime->getId(), $request->get('_token'))) {
-                $this->em = $em;
-                $this->em->remove($anime);
-                $this->em->flush();
-                $this->addFlash('success', 'Page supprimée avec succès');
-            }
-            
-            return $this->redirectToRoute('admin_anime_index');
+        if ($this->isCsrfTokenValid('delete' . $anime->getId(), $request->get('_token'))) {
+            $this->em = $em;
+            $this->em->remove($anime);
+            $this->em->flush();
+            $this->addFlash('success', 'Page supprimée avec succès');
+        }
 
-           
+        return $this->redirectToRoute('admin_anime_index');
+
     }
 
 }

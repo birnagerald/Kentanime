@@ -1,44 +1,39 @@
 var $collectionHolder;
 
 // setup an "add a tag" link
-var $addTagButton = $('<button class="add_tag_link btn btn-primary mb-4">Ajouter un épisode</button>');
-var $newLinkLi = $('<div class="col md-2"></div>').append($addTagButton);
+var $addTagButton = $('<button type="button" class="add_tag_link btn btn-secondary">Ajouter un épisode</button>');
+var $newLinkLi = $('<li></li>').append($addTagButton);
 
 jQuery(document).ready(function () {
     // Get the ul that holds the collection of tags
-    $collectionHolder = $('div.tags');
-
+    $collectionHolder = $('ul.episodes');
+    $collectionHolderNew = $('div.episode');
+    
+    
     // add the "add a tag" anchor and li to the tags ul
     $collectionHolder.append($newLinkLi);
-
+    
     // count the current form inputs we have (e.g. 2), use that as the new
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-    $('#anime_episodes___name___titre').prop('required',false);
-    $('#anime_episodes___name___numero').prop('required',false);
-    $('#anime_episodes___name___lien').prop('required',false);
-    
-    
+    $collectionHolder.data('index', (($collectionHolder.data('index')-1)/3)) 
+    console.log($collectionHolder.data('index'));
 
     $addTagButton.on('click', function (e) {
         // add a new tag form (see next code block)
-        addTagForm($collectionHolder, $newLinkLi);
+        addTagForm($collectionHolder, $newLinkLi, $collectionHolderNew);
     });
 });
 
 function addTagForm($collectionHolder, $newLinkLi) {
     // Get the data-prototype explained earlier
-    var prototype = $collectionHolder.data('prototype');
+    var prototype = $collectionHolderNew.data('prototype');
     
 
     // get the new index
     var index = $collectionHolder.data('index');
 
-    
-
     var newForm = prototype;
-    
     // You need this only if you didn't set 'label' => false in your tags field in TaskType
     // Replace '__name__label__' in the prototype's HTML to
     // instead be a number based on how many items we have
@@ -51,18 +46,25 @@ function addTagForm($collectionHolder, $newLinkLi) {
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
 
+    console.log($collectionHolder.data('index'));
+
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div class="col md-2"></div>').append(newForm);
+    var $newFormLi = $('<table class ="table table-striped"></table>').append(newForm);
     $newLinkLi.before($newFormLi);
-}
 
-jQuery(document).ready(function () {
-    $displayButton = $('div.add-episode-button');
+    // also add a remove button
+    $newFormLi.append('<a href="#" class="remove-tag btn btn-danger mt-4 mb-4">x</a>');
+        
+    $newLinkLi.before($newFormLi);
 
-    $displayButton.on('click', function (e) {
-
-        // Display add-form
-        $('add-episode-container').toggleClass('add-episode-container .add-episode-container-show');
+    // handle the removal, just for this example
+    $('.remove-tag').click(function(e) {
+        e.preventDefault();
+        
+        $(this).parent().remove();
+    
+        console.log($collectionHolder.data('index'));
+        
+        return false;
     });
-
-});
+}

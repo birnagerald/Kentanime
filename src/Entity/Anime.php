@@ -62,7 +62,7 @@ class Anime
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Episode", mappedBy="anime", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Episode", mappedBy="anime", orphanRemoval=true, cascade={"persist"})
      */
     private $episodes;
 
