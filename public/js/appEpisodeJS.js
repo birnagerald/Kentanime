@@ -8,7 +8,14 @@ jQuery(document).ready(function () {
     // Get the ul that holds the collection of tags
     $collectionHolder = $('ul.episodes');
     $collectionHolderNew = $('div.episode');
-    
+
+     // add a delete link to all of the existing tag form li elements
+     $collectionHolder.find('tr').each(function(index ) {
+         
+        addTagFormDeleteLink($(this));
+        
+        $nbOfInputDeleteButton = (index+1)
+    });
     
     // add the "add a tag" anchor and li to the tags ul
     $collectionHolder.append($newLinkLi);
@@ -16,7 +23,14 @@ jQuery(document).ready(function () {
     // count the current form inputs we have (e.g. 2), use that as the new
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
-    $collectionHolder.data('index', (($collectionHolder.data('index')-1)/3)) 
+    console.log($collectionHolder.data('index'));
+    if (typeof $nbOfInputDeleteButton == 'undefined'){
+        $collectionHolder.data('index', (($collectionHolder.data('index')-1)/3))
+    }else{
+        $collectionHolder.data('index', (($collectionHolder.data('index')-($nbOfInputDeleteButton+1))/3))
+    }
+     
+
     console.log($collectionHolder.data('index'));
 
     $addTagButton.on('click', function (e) {
@@ -46,8 +60,6 @@ function addTagForm($collectionHolder, $newLinkLi) {
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
 
-    console.log($collectionHolder.data('index'));
-
     // Display the form in the page in an li, before the "Add a tag" link li
     var $newFormLi = $('<table class ="table table-striped"></table>').append(newForm);
     $newLinkLi.before($newFormLi);
@@ -66,5 +78,16 @@ function addTagForm($collectionHolder, $newLinkLi) {
         console.log($collectionHolder.data('index'));
         
         return false;
+    });
+
+}
+
+function addTagFormDeleteLink($tagFormLi) {
+    var $removeFormButton = $('<button class="btn btn-danger" type="button">Supprimer cet épisode</button>');
+    $tagFormLi.append($removeFormButton);
+
+    $removeFormButton.on('click', function(e) {
+        // remove the li for the tag form
+        $tagFormLi.remove();
     });
 }
