@@ -10,7 +10,7 @@ use App\Repository\PostsRepository;
 class NewsController extends AbstractController
 {
     /**
-     * @Route("/actualites", name="news")
+     * @Route("/actualites", name="news_index")
      */
     public function index(PostsRepository $repo)
     {

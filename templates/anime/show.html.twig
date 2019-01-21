@@ -7,7 +7,7 @@
 
         <div class="container-fluid p-l-r-0">
             <div class="container-banniere">
-                <img class="w-100" src="" alt="Page img">
+                <img class="w-100" src="{{ asset('css/images/pageAnime-banner.jpg') }}" alt="Page img">
             </div>
 
         </div>
@@ -24,7 +24,7 @@
                         <div id="main-page" class="col-xl-6 col-md-12 p-l-r-0">
                         <div class="main-page mb-2">
                         <p>Année de production : <spans>{{anime.anneeDeProduction}}</spans></p>
-                        <p class="post-metadata-page">Catégorie : <span class="metadata-categories">Test</span></p>
+                        {# <p class="post-metadata-page">Catégorie : <span class="metadata-categories">Test</span></p> #}
                         <p>Studio de production : <spans>{{anime.studio}}</spans></p>
                         <p>Classification : <spans>{{choice}}</spans></p>
 

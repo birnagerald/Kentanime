@@ -237,6 +237,11 @@ footer #footer-ressources {
     font-weight: 1000;
 }
 
+.post-metadata .metadata-date {
+    margin-right: 0.5em;
+    font-weight: 1000;
+}
+
 .post-metadata .metadata-categories {
     border: 1px solid grey;
     background-color: #0000003d;
@@ -321,6 +326,23 @@ footer #footer-ressources {
 
 .form-error-icon.badge.badge-danger {
     display: none;
+}
+
+.dropdown-menu {
+    left: -46px;
+    background-color: #3a3a3a;
+    border: 0;
+    border-radius: 0;
+
+}
+
+.dropdown-item {
+    color: #e3474b;
+    font-weight: 1000;
+}
+
+.dropdown-divider {
+    border-top: 2px solid #e3474b;
 }
 
 /* Button

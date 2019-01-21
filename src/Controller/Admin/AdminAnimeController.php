@@ -27,7 +27,7 @@ class AdminAnimeController extends AbstractController
     }
 
     /**
-     * @route("/admin/anime/create", name="admin_anime_new")
+     * @route("/admin/anime/new", name="admin_anime_new")
      * @param Request $request
      * @param ObjectManager $em
      * @return \Symfony\Component\HttpFoundation\Response

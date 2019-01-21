@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="page-listing d-flex flex-row flex-wrap">
                     {% for anime in animes %}
-                        <div class="container-thumbnail-catalogue ml-3"><figure><a href="{{ path('anime_show', {'id': anime.id}) }}"><img src="" alt=""></img></a><figcaption><h2>{{anime.title}}</h2><br><p class="post-metadata">Catégorie : <span class="metadata-categories">Test</span></p></figcaption></figure></div>
+                        <div class="container-thumbnail-catalogue ml-3"><figure><a href="{{ path('anime_show', {'id': anime.id}) }}"><img src="{{ asset('css/images/pageAnime-banner.jpg') }}" alt=""></img></a><figcaption><h2>{{anime.title}}</h2></figcaption></figure></div>
                     {% endfor %}
                 </div>
             </div>

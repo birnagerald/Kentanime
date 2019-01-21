@@ -1,0 +1,72 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}
+
+    <div class="container mt-4">
+
+        <h1>Administration</h1>
+
+        {% for message in app.flashes('success') %}
+
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Libéllés</h1>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                
+
+                <tr>
+                    <td>Gérer les utilisateurs</td>
+                    <td><a href="{{ path('admin_user_index') }}" class="btn btn-secondary">Administrer</a></td>
+                    
+                </tr>
+
+                <tr>
+                    <td>Gérer les articles</td>
+                    {# <td><a href="{{ path('admin_post_index') }}" class="btn btn-secondary">Administrer</a></td> #}
+                    
+                </tr>
+
+                <tr>
+                    <td>Gérer les pages d'animes</td>
+                    <td><a href="{{ path('admin_anime_index') }}" class="btn btn-secondary">Administrer</a></td>
+                    
+                </tr>
+
+                <tr>
+                    <td>Gérer les commentaires</td>
+                    {# <td><a href="{{ path('admin_comment_index') }}" class="btn btn-secondary">Administrer</a></td> #}
+                    
+                </tr>
+
+                <tr>
+                    <td>Gérer les catégories</td>
+                    <td><a href="{{ path('admin_category_index') }}" class="btn btn-secondary">Administrer</a></td>
+                    
+                </tr>
+                
+                       
+                
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+{% endblock %}
