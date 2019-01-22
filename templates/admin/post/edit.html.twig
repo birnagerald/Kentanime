@@ -1,0 +1,27 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Éditer {{post.title}}{% endblock %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}   
+
+    <div class="container mt-4">
+
+        <h1>Éditer l'article : {{post.title}}</h1>
+
+        {% for message in app.flashes('success') %}
+
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+        {{ include ('admin/post/_form.html.twig', {button: 'Éditer'}) }}
+
+        <a href="{{ path('admin_post_index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+
+    </div>
+{% endblock %}

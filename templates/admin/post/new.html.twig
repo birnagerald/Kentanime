@@ -1,0 +1,19 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Créer un article{% endblock %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}   
+
+    <div class="container mt-4">
+
+        <h1>Créer un article</h1>
+
+        {{ include ('admin/post/_form.html.twig', {button: 'Créer'}) }}
+
+        <a href="{{ path('admin_post_index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+
+    </div>
+{% endblock %}

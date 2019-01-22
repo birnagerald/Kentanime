@@ -8,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @Vich\Uploadable
  */
-class Posts
+class Post
 {
     /**
      * @ORM\Id()
@@ -51,8 +51,15 @@ class Posts
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
         $this->comments = new ArrayCollection();
     }
 
@@ -148,6 +155,18 @@ class Posts
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

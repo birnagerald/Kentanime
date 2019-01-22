@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Posts;
+use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\Query;
@@ -13,11 +13,11 @@ use Doctrine\ORM\Query;
  * @method Posts[]    findAll()
  * @method Posts[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PostsRepository extends ServiceEntityRepository
+class PostRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Posts::class);
+        parent::__construct($registry, Post::class);
     }
 
     /**

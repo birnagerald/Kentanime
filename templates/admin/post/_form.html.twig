@@ -1,0 +1,34 @@
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col md-2">{{ form_row(form.title) }}</div>    
+            <div class="col md-2">{{ form_row(form.category) }}</div>
+        </div>
+        <div class="row">
+            <div class="col md-6">{{ form_row(form.content) }}</div>
+        </div>
+        {# <div class="container mt-4">
+            
+                                        
+                <h2>Liste des commentaires de l'article</h2>
+
+                <table class="table table-striped">
+                    <tbody>
+
+                        {% for comment in form.comments %}
+                        <tr>
+                            <td><li>{{ form_row(comment.author) }}</li></td>
+                            <td><li>{{ form_row(comment.content) }}</li></td>
+                            <td><li>{{ form_row(comment.created_at) }}</li></td>
+                        </tr>
+                        {% endfor %} 
+                        
+                    
+                    </tbody>
+                </table>
+        </div> #}
+
+            
+
+        <button class="btn btn-primary float-right mb-5">{{ button |default('Enregistrer') }}</button>
+
+        {{ form_end(form) }}

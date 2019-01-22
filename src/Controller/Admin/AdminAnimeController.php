@@ -52,11 +52,10 @@ class AdminAnimeController extends AbstractController
     }
 
     /**
-     * @Route("/admin/anime/edit/{id}", name="admin_anime_edit", methods="GET|POST|PUT")
+     * @Route("/admin/anime/edit/{id}", name="admin_anime_edit", methods="GET|POST")
      * @param Anime $anime
-     * @param Episode $episode
      * @param Request $request
-     * @param EntityManagerInterface $em
+     * @param ObjectManager $em
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(Anime $anime, Request $request, ObjectManager $em)

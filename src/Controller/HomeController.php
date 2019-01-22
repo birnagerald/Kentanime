@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\PostsRepository;
+use App\Repository\PostRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(PostsRepository $repo, PaginatorInterface $paginator, Request $request)
+    public function index(PostRepository $repo, PaginatorInterface $paginator, Request $request)
     {
         $posts = $paginator->paginate($repo->createQuery(),
             
