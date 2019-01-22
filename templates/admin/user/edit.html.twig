@@ -1,0 +1,17 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Éditer {{ user.username }}{% endblock %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}  
+<div class="container mt-4">
+    <h1>Éditer l'utilisateur : {{ user.username }}</h1>
+
+    {{ include('admin/user/_form.html.twig', {button: 'Éditer'}) }}
+
+    <a href="{{ path('admin_user_index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+    {# {{ include('admin/user/_delete_form.html.twig') }} #}
+    </div>
+{% endblock %}

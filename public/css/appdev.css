@@ -329,7 +329,7 @@ footer #footer-ressources {
 }
 
 .dropdown-menu {
-    left: -46px;
+    left: -59px;
     background-color: #3a3a3a;
     border: 0;
     border-radius: 0;
@@ -337,12 +337,21 @@ footer #footer-ressources {
 }
 
 .dropdown-item {
-    color: #e3474b;
+    color: #fff;
     font-weight: 1000;
+}
+
+.dropdown-item:hover {
+    color: #e3474b;
+    background-color: #3a3a3a;
 }
 
 .dropdown-divider {
     border-top: 2px solid #e3474b;
+}
+
+.dropdown-item:last-child {
+    border-radius: 0px;
 }
 
 /* Button

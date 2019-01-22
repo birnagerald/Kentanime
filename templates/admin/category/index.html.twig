@@ -1,17 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Gérer les catégories{% endblock %}
+{% block body_id 'blog_index' %}
 
-{% block body %}
+{% block main %}
+
+<div class="container mt-4">
     <h1>Gérer les catégories</h1>
 
+    {% for message in app.flashes('success') %}
+
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+
+    {% endfor %}
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -34,4 +44,6 @@
     </table>
 
     <a href="{{ path('admin_category_new') }}" class="btn btn-primary">Créer</a>
+
+</div>
 {% endblock %}

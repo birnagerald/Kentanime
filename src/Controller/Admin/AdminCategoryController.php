@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class CategoryController extends AbstractController
+class AdminCategoryController extends AbstractController
 {
     /**
      * @Route("/admin/category", name="admin_category_index", methods={"GET"})
@@ -36,7 +36,7 @@ class CategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($category);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Catégorie créée avec succès');
             return $this->redirectToRoute('admin_category_index');
         }
 
@@ -66,6 +66,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Catégorie éditée avec succès');
 
             return $this->redirectToRoute('admin_category_index', [
                 'id' => $category->getId(),
@@ -87,6 +88,7 @@ class CategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($category);
             $entityManager->flush();
+            $this->addFlash('success', 'Catégorie supprimée avec succès');
         }
 
         return $this->redirectToRoute('admin_category_index');
