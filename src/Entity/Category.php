@@ -33,15 +33,9 @@ class Category
      */
     private $posts;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="category")
-     */
-    private $pages;
-
     public function __construct()
     {
         $this->posts = new ArrayCollection();
-        $this->pages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -104,34 +98,4 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection|Page[]
-     */
-    public function getPages(): Collection
-    {
-        return $this->pages;
-    }
-
-    public function addPage(Page $page): self
-    {
-        if (!$this->pages->contains($page)) {
-            $this->pages[] = $page;
-            $page->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removePage(Page $page): self
-    {
-        if ($this->pages->contains($page)) {
-            $this->pages->removeElement($page);
-            // set the owning side to null (unless already changed)
-            if ($page->getCategory() === $this) {
-                $page->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
 }
