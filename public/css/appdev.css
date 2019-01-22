@@ -392,6 +392,10 @@ footer #footer-ressources {
     font-weight: 500;
 }
 
+.post-metadata-preview {
+    font-weight: 1000;
+}
+
 
 .post-tags .label {
     margin-right: 5px;

@@ -4,99 +4,39 @@
 
 {% block body_id 'blog_index' %}
 {% block main %}
-{% if post.category.title == 'Anime' %}
     
-                <div class="test-main">
+    <div class="test-main">
             
-                <div class="container-fluid p-l-r-0">
-                    <div class="container-banniere">
-                        <img class="w-100" src="{{ asset('css/images/article-banner.jpg') }}" alt="Page img">
-                    </div>
+        <div class="container-fluid p-l-r-0">
 
-                </div>
-
-                    <div class="container container-article">
-                        <article class="post d-flex flex-column">
-                            <h1 class="mx-auto title-show">
-                                <a href="#">
-                                {{ post.title }}
-                                </a>
-                            </h1>
-
-                            <p class="mx-auto">{{ post.content| nl2br }}</p>
-
-                            <p class="post-metadata ml-auto">
-                                <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span><span class="metadata">-</span>catégorie : <span class="metadata-categories"> {{ post.category.title }}</span>
-                                
-                            </p>
-
-                        </article>
-
-                        <div class="d-flex flex-row mb-3 mt-2">
-                            <hr class="sep-horizontal-bar"><h4 class="">PAGE PROJET</h4><hr class="sep-horizontal-bar">
-
-                        </div>
-
-                        <div class="d-flex flex-row mb-5">
-                            <a href="#" class="BUTTON_KZF mx-auto">Titre de la série</a>
-                        </div>
-
-                        <div class="d-flex flex-row mb-3 mt-2">
-                            <hr class="sep-horizontal-bar"><h4 class="">LIENS DE TÉLÉCHARGEMENT</h4><hr class="sep-horizontal-bar">
-                        
-                        </div>
-
-                        <div class="d-flex flex-row mb-5">
-                            <a href="#" class="BUTTON_KZF mx-auto">10 bits MKV</a>
-                        </div>
-
-                        <div class="d-flex flex-row mb-3 mt-2">
-                            <hr class="sep-horizontal-bar"><h4 class="">NOTER L'ÉPISODE</h4><hr class="sep-horizontal-bar">
-
-                        </div>
-
-                    </div>
-
-                    {% include 'news/_comment.html.twig' %}
-                
+            <div class="container-banniere">
+                <img class="w-100" src="{{ asset('css/images/article-banner.jpg') }}" alt="Page img">
+            </div>
 
         </div>
 
-    
-{% else %}
-   
-
-        <div class="test-main">
+        <div class="container container-article">
         
-                <div class="container-fluid p-l-r-0">
-                    <div class="container-banniere">
-                        <img class="w-100" src="{{ asset('css/images/article-banner.jpg') }}" alt="Page img">
-                    </div>
+            <article class="post d-flex flex-column">
+                <h1 class="mx-auto title-show">
+                    <a href="#">
+                    {{ post.title }}
+                    </a>
+                </h1>
 
-                </div>
-            
-                <div class="container container-article">
-                    
-                        <article class="post d-flex flex-column">
-                            <h1 class="mx-auto title-show">
-                                <a href="#">
-                                {{ post.title }}
-                                </a>
-                            </h1>
+                <p class="mx-auto">{{ post.content|raw }}</p>
 
-                            <p class="mx-auto">{{ post.content| nl2br }}</p>
+                <p class="post-metadata ml-auto">
+                    <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span><span class="metadata">-</span>catégorie : <span class="metadata-categories"> {{ post.category.title }}</span>
+                </p>
 
-                            <p class="post-metadata ml-auto">
-                                <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span><span class="metadata">-</span>catégorie : <span class="metadata-categories"> {{ post.category.title }}</span>
-                                
-                            </p>
+            </article>
 
-                        </article>
-                </div>
-                {% include 'news/_comment.html.twig' %}
-                
-            
         </div>
 
-{% endif %}
+        {% include 'news/_comment.html.twig' %}
+                
+
+    </div>
+
 {% endblock %}

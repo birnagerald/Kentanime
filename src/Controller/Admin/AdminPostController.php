@@ -92,7 +92,7 @@ class AdminPostController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->get('_token'))) {
             $this->em = $em;
-            $this->em->remove($anime);
+            $this->em->remove($post);
             $this->em->flush();
             $this->addFlash('success', 'article supprimé avec succès');
         }

@@ -17,7 +17,7 @@
                             
                         </p>
 
-                        <p>{{ post.content|length > 200 ? post.content|slice(0, 50) ~ '...' : post.content  }}</p>
+                        <p class="post-metadata-preview">{{ post.content|length > 200 ? (post.content|slice(0, 150) ~ '...')|striptags|raw : post.content|raw }}</p>
 
                     </article>
                 </div>

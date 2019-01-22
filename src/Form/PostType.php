@@ -2,13 +2,13 @@
 
 namespace App\Form;
 
-use App\Entity\Post;
 use App\Entity\Category;
+use App\Entity\Post;
 use Doctrine\ORM\EntityManager;
-use App\Repository\CategoryRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PostType extends AbstractType
@@ -20,17 +20,15 @@ class PostType extends AbstractType
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // $categories = $this->getDoctrine()->getRepository(category::class)->findAll();
-        // $categories = $this->em->getRepository(category::class)->findAll();
-        // foreach ($categories as $categorie){
-        //     $category[] = $categorie->getTitle();
-        // }
-        
         $builder
             ->add('title')
-            ->add('content')
-            // ->add('createdAt')
-            // ->add('author')
+            ->add('content', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                    'toolbar' => 'full',
+                    'input_sync' => true,
+                    'inline' => true,
+                )))
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title',
