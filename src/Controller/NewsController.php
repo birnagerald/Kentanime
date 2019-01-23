@@ -8,6 +8,8 @@ use App\Form\CommentType;
 use App\Repository\PostRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -28,31 +30,33 @@ class NewsController extends AbstractController
      * @Route("/actualites/show/{id}", name="news_show")
      * @param Post $post
      * @param Security $security
+     * @param ObjectManager $em
+     * @param Request $request
      */
-    public function show(Post $post, Request $request, Security $security)
+    public function show(Post $post, Request $request, ObjectManager $em, Security $security)
     {   
         $comment = new Comment();
-        // $form = $this->createForm(CommentType::class, $comment);
-        // $form->handleRequest($request);
+        
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
 
-        // if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        //     $comment->setAuthor($this->getUser()->getUsername());
-        //     $comment->setUser($user);
+            $comment->setAuthor($this->getUser()->getUsername());
+            $comment->setPost($post);
 
-        //     $this->em = $em;
-        //     $this->em->persist($comment);
+            $this->em = $em;
+            $this->em->persist($comment);
 
-        //     $this->em->flush();
-        //     $this->addFlash('success', 'Commentaire posté avec succès');
+            $this->em->flush();
             
-        //     return $this->redirectToRoute('news_show');
-        // }
+            return $this->redirectToRoute('news_show', array('id' => $post->getId()));
+        }
 
 
         return $this->render('news/show.html.twig',[
-            // 'form' => $form->createView(),
             'post' => $post,
+            'form' => $form->createView(),
         ]);
     }
 }

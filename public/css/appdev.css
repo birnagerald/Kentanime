@@ -272,6 +272,14 @@ footer #footer-ressources {
     background-color: black;
 }
 
+.sep-horizontal-bar-full {
+    width: 80%;
+    height: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: black;
+}
+
 .page-link {
     color: black;
 }
@@ -329,7 +337,7 @@ footer #footer-ressources {
 }
 
 .dropdown-menu {
-    left: -59px;
+    left: -48px;
     background-color: #3a3a3a;
     border: 0;
     border-radius: 0;
@@ -364,6 +372,16 @@ table {
     border-collapse: unset;
 }
 
+*:focus {
+    outline: none !important;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
 
 /* Button
    ------------------------------------------------------------------------- */
@@ -387,6 +405,39 @@ table {
 .BUTTON_KZF:hover {
     background: black;
     text-decoration: none;
+}
+
+.Comments-logBtn {
+    color: white;
+    border-color: #e3474b;
+    background-color: #e3474b;
+}
+
+.Comments-logBtn:hover {
+    background-color: #e3474b;
+}
+
+.btn-primary {
+    background-color: #e3474b;
+    border-color: #e3474b;
+
+}
+
+.btn-primary:hover {
+    background-color: #e3474b;
+
+}
+
+.btn-primary:active {
+    background-color: #e3474b !important;
+    border-color: #e3474b !important;
+
+}
+
+.btn-primary:focus {
+    background-color: #e3474b !important;
+    border-color: #e3474b !important;
+
 }
 
 /* Common Blog page elements
@@ -578,18 +629,18 @@ li {
 .comment_input {
     min-height: 120px;
     border: 2px solid black;
+    background: #e9ecec;
 }
 
-.Comments-submitBtn {
-    margin-right: 9%;
-
+.comment_input:focus {
+    border: 2px solid black;
+    background: #e9ecec;
 }
 
-.Comments-logBtn {
-    color: #e3474b;
-    border-color: #e3474b;
-}
-
-.Comments-logBtn:hover {
-    background-color: #e3474b;
+#comment_content{
+    resize:none;
+    min-height: 120px;
+    border-radius: 0;
+    border: 2px solid black;
+    background-color: #dfdfdf;
 }

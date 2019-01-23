@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -24,6 +25,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotNull
      */
     private $content;
 
@@ -89,12 +91,12 @@ class Comment
         return $this;
     }
 
-    public function getPost(): ?Posts
+    public function getPost(): ?Post
     {
         return $this->post;
     }
 
-    public function setPost(?Posts $post): self
+    public function setPost(?Post $post): self
     {
         $this->post = $post;
 
