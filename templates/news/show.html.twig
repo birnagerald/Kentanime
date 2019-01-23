@@ -27,9 +27,9 @@
                 <p class="mx-auto">{{ post.content|raw }}</p>
 
                 <p class="post-metadata ml-auto">
-                    <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span><span class="metadata">-</span>catégorie : <span class="metadata-categories"> {{ post.category.title }}</span>
+                    <span class="metadata-author">{{ post.author }}</span><span class="metadata">-</span>{% if post.updatedAt != null %}<span class="metadata-date">{{ post.updatedAt | date('d/m/y') }}</span>{% else %}<span class="metadata-date">{{ post.createdAt | date('d/m/y') }}</span>{% endif %}<span class="metadata">-</span>catégorie : <span class="metadata-categories"> {{ post.category.title }}</span>
                 </p>
-
+                    
             </article>
 
         </div>
