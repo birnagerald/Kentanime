@@ -2,15 +2,46 @@
     <hr class="sep-horizontal-bar"><h4 class="">Commentaires</h4><hr class="sep-horizontal-bar">
 </div>
 
+{% if app.user %}
+<div class="container">
+
+        <form action="" class="comment_form">
+                        <div class="comment row">
+                            <a class="comment_avatar ml-3" href="#">
+                                <img src="https://fakeimg.pl/75x75/">
+                            </a>
+                            <div class="comment-main col-10">
+                                <div contenteditable="true" class="comment_input" placeholder="Laissez votre commentairer" name="comment[content]"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-secondary Comments-submitBtn float-right mt-3 mb-4 col-2">
+                            <span class="Comments-submitText CommentsBtnReplyGTM">Poster</span>
+                           
+                        </button>
+            </form>
+ 
+</div>
+{% else %}
+<hr>
+<div class="container">
+<h1>Seul les utilisateurs identifiés peuvent laisser des commentaires</h1>
+<a class="btn btn-outline-primary Comments-logBtn" href="{{ path('app_login') }}" role="button">Se connecter</a>
+<a class="btn btn-outline-primary ml-4 Comments-logBtn" href="{{ path('app_register') }}" role="button">S'inscrire</a>
+</div>
+<hr>
+{% endif %}
+
 <div class="commentaire mt-5">
+
     {% for comment in post.comments %}
     <div class="comment">
         <div class="row">
             <div class="div col-12">
                 <p class="post-metadata ml-auto">
-                                <span class="metadata-author">{{ comment.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ comment.createdAt | date('d/m/y à h:i') }}</span>
+                        <span class="metadata-author">{{ comment.author }}</span><span class="metadata">-</span><span class="metadata-date">{{ comment.createdAt | date('d/m/y à h:i') }}</span>
                                 
-                            </p>
+                </p>
 
             </div>
 

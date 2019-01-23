@@ -561,3 +561,24 @@ li {
 #main>div>form>div.container.mt-4>ul>table>tbody>tr>button {
     margin-top: 41px;
 }
+
+/* Comments
+   ------------------------------------------------------------------------- */
+.comment_input {
+    min-height: 120px;
+    border: 2px solid black;
+}
+
+.Comments-submitBtn {
+    margin-right: 9%;
+
+}
+
+.Comments-logBtn{
+    color: #e3474b;
+    border-color: #e3474b;
+}
+
+.Comments-logBtn:hover{
+    background-color: #e3474b;
+}

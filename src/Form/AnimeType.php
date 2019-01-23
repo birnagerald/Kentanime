@@ -26,6 +26,7 @@ class AnimeType extends AbstractType
             ->add('episodes', CollectionType::class, [
                 'entry_type' => EpisodeType::class,
                 'entry_options' => ['label' => false],
+                'label' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,

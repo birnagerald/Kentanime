@@ -40,6 +40,7 @@ class PostType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Post::class,
+            'translation_domain' => 'forms',
         ]);
     }
 }
