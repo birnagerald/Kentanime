@@ -44,7 +44,7 @@ class SessionIdleHandler
 
                 // logout is defined in security.yaml.  See 'Logging Out' section here:
                 // https://symfony.com/doc/4.1/security.html
-                $event->setResponse(new RedirectResponse($this->router->generate(app_logout)));
+                $event->setResponse(new RedirectResponse($this->router->generate('app_logout')));
             }
         }
     }
