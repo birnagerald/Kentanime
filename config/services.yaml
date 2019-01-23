@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'fr'
+    session_max_idle_time: 1800 // 30 * 60 = 1800 seconds
 
 services:
     # default configuration for services in *this* file
@@ -29,3 +30,8 @@ services:
     PostType.service:
         class: App\Form\PostType
         arguments: ["@doctrine.orm.entity_manager"]
+
+    App.Handler.SessionIdle:
+        class: App\Security\SessionIdleHandler
+        arguments: ['%session_max_idle_time%']
+        tags: [{ name: kernel.event_listener, event: kernel.request }]
