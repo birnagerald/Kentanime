@@ -354,6 +354,17 @@ footer #footer-ressources {
     border-radius: 0px;
 }
 
+.board-libéllé {
+    font-weight: 1000;
+    font-size: 1.5em;
+}
+
+table {
+    border: 2px solid black;
+    border-collapse: unset;
+}
+
+
 /* Button
    ------------------------------------------------------------------------- */
 
@@ -574,11 +585,11 @@ li {
 
 }
 
-.Comments-logBtn{
+.Comments-logBtn {
     color: #e3474b;
     border-color: #e3474b;
 }
 
-.Comments-logBtn:hover{
+.Comments-logBtn:hover {
     background-color: #e3474b;
 }
