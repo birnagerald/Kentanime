@@ -5,11 +5,11 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminCategoryController extends AbstractController
 {
@@ -26,8 +26,7 @@ class AdminCategoryController extends AbstractController
     /**
      * @Route("/admin/category/new", name="admin_category_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
-    {
+    function new (Request $request): Response {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -45,16 +44,6 @@ class AdminCategoryController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    // /**
-    //  * @Route("/admin/category/{id}", name="admin_category_show", methods={"GET"})
-    //  */
-    // public function show(Category $category): Response
-    // {
-    //     return $this->render('admin/category/show.html.twig', [
-    //         'category' => $category,
-    //     ]);
-    // }
 
     /**
      * @Route("/admin/category/{id}/edit", name="admin_category_edit", methods={"GET","POST"})
@@ -81,10 +70,11 @@ class AdminCategoryController extends AbstractController
 
     /**
      * @Route("/admin/category/{id}", name="admin_category_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function delete(Request $request, Category $category): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($category);
             $entityManager->flush();

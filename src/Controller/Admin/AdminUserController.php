@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @Route("/user")
  * Require ROLE_ADMIN for *every* controller method in this class.
  *
  * @IsGranted("ROLE_ADMIN")
@@ -43,6 +42,7 @@ class AdminUserController extends AbstractController
 
     /**
      * @Route("/admin/user/{id}/edit", name="admin_user_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function edit(Request $request, User $user): Response
     {
@@ -66,6 +66,7 @@ class AdminUserController extends AbstractController
 
     /**
      * @Route("/admin/user/{id}", name="admin_user_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function delete(Request $request, User $user): Response
     {

@@ -18,6 +18,7 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'expanded' => true, // render check-boxes
                 'choices' => [
+                    'SuperAdmin' => 'ROLE_SUPER_ADMIN',
                     'Admin' => 'ROLE_ADMIN',
                     'User' => 'ROLE_USER',
                     // ...
