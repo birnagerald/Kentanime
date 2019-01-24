@@ -36,14 +36,15 @@ class NewsController extends AbstractController
     public function show(Post $post, Request $request, ObjectManager $em, Security $security)
     {   
         $comment = new Comment();
+        $user = $security->getUser();
         
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $comment->setAuthor($this->getUser()->getUsername());
             $comment->setPost($post);
+            $comment->setUser($user);
 
             $this->em = $em;
             $this->em->persist($comment);

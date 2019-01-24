@@ -20,7 +20,6 @@ class AdminPostController extends AbstractController
     {
 
         $posts = $repo->findAll();
-        dump($posts);
         return $this->render('admin/post/index.html.twig', compact('posts'));
     }
 
@@ -41,7 +40,6 @@ class AdminPostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $post->setAuthor($this->getUser()->getUsername());
             $post->setUser($user);
             $this->em = $em;
             $this->em->persist($post);
