@@ -121,12 +121,12 @@
     right: 0;
     left: 0;
     z-index: 1030;
-    background-color: #3a3a3a!important;
+    background-color: #3a3a3a !important;
     min-height: 60px;
     border: 1px solid transparent;
 }
 
-.navbar-nav{
+.navbar-nav {
     margin-right: 4%;
 }
 
@@ -152,7 +152,7 @@ body {
     font-size: 15px;
     line-height: 1.42857;
     color: black;
-    background-color: rgb(223, 223, 223 );
+    background-color: rgb(223, 223, 223);
     padding-top: 61px;
 }
 
@@ -327,7 +327,8 @@ footer #footer-ressources {
 }
 
 .dropdown-menu {
-    left: 0;
+    left: auto;
+    right: 0;
     background-color: #3a3a3a;
     border: 0;
     border-radius: 0;
@@ -371,6 +372,11 @@ table {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
+.carousel.slide {
+    border-bottom: 2px solid black;
+}
+
 /* Button
    ------------------------------------------------------------------------- */
 

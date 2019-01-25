@@ -5,18 +5,18 @@
 {% block body_id 'blog_index' %}
 
 {% block main %}
-    <div class="test-main">
+<div class="test-main">
 
-        <div class="container-fluid p-l-r-0">
-            <div class="container-banniere">
-                <img class="w-100" src="{{ asset('css/images/actualite-banner.jpg') }}" alt="Page img">
-            </div>
-
+    <div class="container-fluid p-l-r-0">
+        <div class="container-banniere">
+            <img class="w-100" src="{{ asset('css/images/actualite-banner.jpg') }}" alt="Page img">
         </div>
-        
-        {% for post in posts %}
-            {% include 'news/_post.html.twig' %}
-        {% endfor %}
-        
+
     </div>
+
+    {% for post in posts|reverse %}
+    {% include 'news/_post.html.twig' %}
+    {% endfor %}
+
+</div>
 {% endblock %}

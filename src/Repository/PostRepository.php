@@ -23,12 +23,13 @@ class PostRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function createQuery(): Query
+    public function createQuery() : Query
     {
         return $this->createQueryBuilder('p')
-                
+
+            ->orderBy('p.createdAt', 'DESC')
             ->getQuery();
-            
+
     }
 
     // /**
@@ -46,7 +47,7 @@ class PostRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+     */
 
     /*
     public function findOneBySomeField($value): ?Posts
@@ -58,5 +59,5 @@ class PostRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+     */
 }
