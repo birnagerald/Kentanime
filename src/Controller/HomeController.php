@@ -15,10 +15,13 @@ class HomeController extends AbstractController
      */
     public function index(PostRepository $repo, PaginatorInterface $paginator, Request $request)
     {
-        $posts = $paginator->paginate($repo->createQuery(),
-            
-            $request->query->getInt('page', 1), 3);
-            
+        $posts = $paginator->paginate(
+            $repo->createQuery(),
+
+            $request->query->getInt('page', 1),
+            3
+        );
+
         return $this->render('home/index.html.twig', [
             'posts' => $posts,
         ]);

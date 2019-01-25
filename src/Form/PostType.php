@@ -2,14 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\Category;
 use Doctrine\ORM\EntityManager;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PostType extends AbstractType
 {
@@ -28,12 +29,15 @@ class PostType extends AbstractType
                     'toolbar' => 'full',
                     'input_sync' => true,
                     'inline' => true,
-                )))
+                )
+            ))
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title',
             ])
-        ;
+            ->add('imageFile', FileType::class, [
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

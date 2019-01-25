@@ -1,12 +1,16 @@
-        {{ form_start(form) }}
-        <div class="row">
-            <div class="col md-2">{{ form_row(form.title) }}</div>    
-            <div class="col md-2">{{ form_row(form.category) }}</div>
-        </div>
-        <div class="row">
-            <div class="col md-6">{{ form_row(form.content) }}</div>
-        </div>
-
-        <button class="btn btn-primary float-right mb-5">{{ button |default('Enregistrer') }}</button>
-
-        {{ form_end(form) }}
+{{ form_start(form) }}
+<div class="row">
+    <div class="col md-2">
+        {{ form_row(form.title) }}</div>
+    <div class="col md-2">
+        {{ form_row(form.category) }}</div>
+    <div class="col md-2">
+        {{ form_row(form.imageFile) }}</div>
+</div>
+<div class="row">
+    <div class="col md-6">
+        {{ form_row(form.content) }}</div>
+</div>
+<button class="btn btn-primary float-right mb-5">
+    {{ button |default('Enregistrer') }}</button>
+{{ form_end(form) }}

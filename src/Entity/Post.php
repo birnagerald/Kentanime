@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
@@ -21,6 +25,24 @@ class Post
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * Undocumented variable
+     *
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
+    /**
+     * Undocumented variable
+     *
+     * @var File|null
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="filename")
+     * @Assert\Image(
+     * mimeTypes="image/jpeg"
+     * )
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -65,53 +87,53 @@ class Post
         $this->comments = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId() : ? int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle() : ? string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title) : self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getContent() : ? string
     {
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(string $content) : self
     {
         $this->content = $content;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt() : ? \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt) : self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getCategory() : ? Category
     {
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    public function setCategory(? Category $category) : self
     {
         $this->category = $category;
 
@@ -121,12 +143,12 @@ class Post
     /**
      * @return Collection|Comment[]
      */
-    public function getComments(): Collection
+    public function getComments() : Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comment $comment): self
+    public function addComment(Comment $comment) : self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
@@ -136,7 +158,7 @@ class Post
         return $this;
     }
 
-    public function removeComment(Comment $comment): self
+    public function removeComment(Comment $comment) : self
     {
         if ($this->comments->contains($comment)) {
             $this->comments->removeElement($comment);
@@ -149,27 +171,76 @@ class Post
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser() : ? User
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(? User $user) : self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt() : ? \DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(? \DateTimeInterface $updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
+        return $this;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return null|string
+     */
+    public function getFilename() : ? string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param null|string $filename
+     * @return Post
+     */
+    public function setFilename(? string $filename) : Post
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+
+    /**
+     * Undocumented function
+     *
+     * @return null|File
+     */
+    public function getImageFile() : ? File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param null|File $imagefile
+     * @return Post
+     */
+    public function setImageFile(? File $imageFile) : Post
+    {
+        $this->imageFile = $imageFile;
+
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
         return $this;
     }
 
@@ -182,5 +253,6 @@ class Post
         // update the modified time
         $this->setUpdatedAt(new \DateTime());
     }
+
 
 }
