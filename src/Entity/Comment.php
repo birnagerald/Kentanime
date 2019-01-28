@@ -46,58 +46,64 @@ class Comment
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $report;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->report = false;
     }
 
-    public function getId(): ?int
+    public function getId() : ? int
     {
         return $this->id;
     }
 
-    public function getContent(): ?string
+    public function getContent() : ? string
     {
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(string $content) : self
     {
         $this->content = $content;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt() : ? \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt) : self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getPost(): ?Post
+    public function getPost() : ? Post
     {
         return $this->post;
     }
 
-    public function setPost(?Post $post): self
+    public function setPost(? Post $post) : self
     {
         $this->post = $post;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt() : ? \DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(? \DateTimeInterface $updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -114,14 +120,26 @@ class Comment
         $this->setUpdatedAt(new \DateTime());
     }
 
-    public function getUser(): ?User
+    public function getUser() : ? User
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(? User $user) : self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getReport() : ? bool
+    {
+        return $this->report;
+    }
+
+    public function setReport(bool $report) : self
+    {
+        $this->report = $report;
 
         return $this;
     }

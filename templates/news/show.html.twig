@@ -1,45 +1,49 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    {{ post.title }}{% endblock %}
+{{ post.title }}{% endblock %}
 {% block body_id 'blog_index' %}
-    {% block main %}
-        <div class="test-main">
-            <div class="container-fluid p-l-r-0">
-                <div class="container-banniere">
-                    {% if post.filename %}
-                        <img alt="Page img" src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('banner')}}" alt="Page img">
-                            {% else %}
-                            <img src="{{ asset('css/images/article-banner.jpg') | imagine_filter('banner')}}" alt="Page img">
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="container container-article">
-                        <article class="post d-flex flex-column">
-                            <h1 class="mx-auto title-show">
-                                <a href="#">
-                                    {{ post.title }}
-                                </a>
-                            </h1>
-                            <p class="mx-auto">
-                                {{ post.content|raw }}</p>
-                            <p class="post-metadata ml-auto">
-                                <span class="metadata-author">
-                                    {{ post.user.username }}</span>
-                                <span class="metadata">-</span>
-                                {% if post.updatedAt != null %}
-                                    <span class="metadata-date">
-                                        {{ post.updatedAt | date('d/m/y') }}</span>
-                                    {% else %}
-                                    <span class="metadata-date">
-                                        {{ post.createdAt | date('d/m/y') }}</span>
-                                {% endif %}
-                                <span class="metadata">-</span>catégorie :
-                                <span class="metadata-categories">
-                                    {{ post.category.title }}</span>
-                            </p>
-                        </article>
-                    </div>
-                    {{ include ('news/_comment.html.twig', {button: 'Poster'}) }}
-                </div>
-            {% endblock %}
-        
+{% block main %}
+<div class="test-main">
+    <div class="container-fluid p-l-r-0">
+        <div class="container-banniere">
+            {% if post.filename %}
+            <img alt="Page img" src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('banner')}}" alt="Page img">
+            {% else %}
+            <img src="{{ asset('css/images/article-banner.jpg') | imagine_filter('banner')}}" alt="Page img">
+            {% endif %}
+        </div>
+    </div>
+    <div class="container container-article">
+        <article class="post d-flex flex-column">
+            <h1 class="mx-auto title-show">
+                <a href="#">
+                    {{ post.title }}
+                </a>
+            </h1>
+            <p class="mx-auto">
+                {{ post.content|raw }}</p>
+            <p class="post-metadata ml-auto">
+                <span class="metadata-author">
+                    {{ post.user.username }}</span>
+                <span class="metadata">-</span>
+                {% if post.updatedAt != null %}
+                <span class="metadata-date">
+                    {{ post.updatedAt | date('d/m/y') }}</span>
+                {% else %}
+                <span class="metadata-date">
+                    {{ post.createdAt | date('d/m/y') }}</span>
+                {% endif %}
+                <span class="metadata">-</span>catégorie :
+                <span class="metadata-categories">
+                    {{ post.category.title }}</span>
+            </p>
+        </article>
+    </div>
+    {{ include ('news/_comment.html.twig', {button: 'Poster'}) }}
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ asset('/js/appCommentJS.js') }}"></script>
+{% endblock %}

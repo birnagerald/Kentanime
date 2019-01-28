@@ -1,139 +1,149 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Kentanime{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
 
-        {% block stylesheets %}
-         <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
-         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-         <link rel="stylesheet" href="{{ asset('/css/appdev.css') }}">
-        {% endblock %}
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Kentanime{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <body id="{% block body_id %}{% endblock %}">
-
-        {% block header %}
-            <header>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="/">Kentanime</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarColor03">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/actualites">Actualité</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/anime">Liste des animes</a>
-                            </li>
-                        </ul>
-                         {% if app.user %}
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <ul class="navbar-nav">
-                                    
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {{ app.user.username}}
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">Profil</a>
-                                            <a class="dropdown-item" href="{{ path('admin_index') }}">Administration</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
-                                            </div>
-                                        </li>
-                                </ul>
-                            {% else %}
-                                <ul class="navbar-nav">
-                                    
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {{ app.user.username}}
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">Profil</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
-                                            </div>
-                                        </li>
-                                </ul>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('/css/appdev.css') }}">
+    {% endblock %}
+</head>
 
 
-                            {% endif %}
-                            
+<body id="{% block body_id %}{% endblock %}">
 
-                        {% else %}
+    {% block header %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Kentanime</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                                </li>
-                            </ul>
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/actualites">Actualité</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/anime">Liste des animes</a>
+                    </li>
+                </ul>
+                {% if app.user %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <ul class="navbar-nav">
 
-                        {% endif %}
-                        {# <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form> #}
-                    </div>
-                </nav>
-            </header>
-        {% endblock %}
-
-        <div class="container-fluid body-container">
-        {% block body %}
-               <div class="row">
-                    <div id="main" class="col-xl-9 col-md-12 p-l-r-0">
-
-                        {% block main %}{% endblock %}
-                    </div>
-
-                    <div id="sidebar" class="col-xl-3 col-md-0 p-l-r-0">
-                        {% block sidebar %}
-                             <div class="test-sidebar">
-                                </div>
-                        {% endblock %}
-                    </div>
-                </div>
-        {% endblock %}
-        </div>
-
-        {% block footer %}
-            <footer>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div id="footer-copyright" class="col-md-6">
-                            <p>2019 - Kentanime <span class="far fa-copyright"></span></p>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{ app.user.username}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profil</a>
+                            <a class="dropdown-item" href="{{ path('admin_index') }}">Administration</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
                         </div>
-                        {# <div id="footer-resources" class="col-md-6">
-                            <p>
-                                <a href="#" title="Symfony Twitter">
-                                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                                </a>
-                                <a href="#" title="SensioLabs Facebook">
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                                </a>
-                                
-                            </p>
-                        </div> #}
-                    </div>
-                </div>
-            </footer>
-        {% endblock %}
-        {% block javascripts %}{% endblock %}
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav">
 
-    </body>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{ app.user.username}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profil</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+                        </div>
+                    </li>
+                </ul>
+
+
+                {% endif %}
+
+
+                {% else %}
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                    </li>
+                </ul>
+
+                {% endif %}
+                {# <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form> #}
+            </div>
+        </nav>
+    </header>
+    {% endblock %}
+
+    <div class="container-fluid body-container">
+        {% block body %}
+        <div class="row">
+            <div id="main" class="col-xl-9 col-md-12 p-l-r-0">
+
+                {% block main %}{% endblock %}
+            </div>
+
+            <div id="sidebar" class="col-xl-3 col-md-0 p-l-r-0">
+                {% block sidebar %}
+                <div class="test-sidebar">
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+
+    {% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div id="footer-copyright" class="col-md-6">
+                    <p>2019 - Kentanime <span class="far fa-copyright"></span></p>
+                </div>
+                {# <div id="footer-resources" class="col-md-6">
+                    <p>
+                        <a href="#" title="Symfony Twitter">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" title="SensioLabs Facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+
+                    </p>
+                </div> #}
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+    {% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1"
+        crossorigin="anonymous"></script>
+    {% endblock %}
+</body>
+
 </html>
