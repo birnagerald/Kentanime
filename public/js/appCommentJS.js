@@ -4,20 +4,36 @@ function onClickCommentReport(e) {
     const url = this.href;
 
     axios.get(url).then(function (response) {
+        $('.modal-title').html("Succès");
+        $('.modal-body').html(response.data.message);
 
-        alert(response.data.message);
 
     }).catch(function (error) {
         if (error.response.status === 403 || error.response.status === 401) {
-            alert(error.response.data.message);
+            $('.modal-title').html("Erreur");
+            $('.modal-body').html(error.response.data.message);
         } else {
-            alert("Une erreur s'est produite, action impossible");
+            $('.modal-title').html("Erreur");
+            $('.modal-body').html("Une erreur s'est produite, action impossible");
         }
 
 
     });
 }
+jQuery(document).ready(function () {
 
-document.querySelectorAll('a.js-report').forEach(function (comment) {
-    comment.addEventListener('click', onClickCommentReport);
+    $('[data-toggle=modal]').on('click', function (e) {
+        var $target = $($(this).data('target'));
+        $target.data('triggered', true);
+        setTimeout(function () {
+            if ($target.data('triggered')) {
+                $target.modal('show').data('triggered', false);
+            };
+        }, 1000); // milliseconds
+        return false;
+    });
+    document.querySelectorAll('a.js-report').forEach(function (comment) {
+        comment.addEventListener('click', onClickCommentReport);
+    })
+
 })
