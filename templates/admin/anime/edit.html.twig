@@ -4,22 +4,26 @@
 
 {% block body_id 'blog_index' %}
 
-{% block main %}   
+{% block main %}
 
-    <div class="container mt-4">
+<div class="container mt-4">
 
-        <h1>Éditer la page de {{anime.title}}</h1>
+    <h1>Éditer la page de {{anime.title}}</h1>
 
-        {% for message in app.flashes('success') %}
+    {% for message in app.flashes('success') %}
 
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-
-        {% endfor %}
-
-        {{ include ('admin/anime/_form.html.twig', {button: 'Éditer'}) }}
-
-
+    <div class="alert alert-success">
+        {{ message }}
     </div>
+
+    {% endfor %}
+
+    {{ include ('admin/anime/_form.html.twig', {button: 'Éditer'}) }}
+
+
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('/js/appEpisodeJS.js') }}"></script>
 {% endblock %}

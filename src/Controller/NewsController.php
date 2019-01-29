@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
@@ -65,9 +66,9 @@ class NewsController extends AbstractController
 
 
     /**
-     * Permet de report un commentaire
+     * Report a comment with AJAX
      * 
-     * @route("/actualites/show/{post_id}/comment/{id}/report", name="comment_report")
+     * @route("/actualites/show/{post_id}/comment/{id}/report", name="comment_report", methods="GET|POST")
      *
      * @param Request $request
      * @param Comment $comment
@@ -92,13 +93,47 @@ class NewsController extends AbstractController
             $comment->setReport(true);
             $em->flush();
             return $this->json([
-                'message' => 'Commentaire bien signalé'
+                'message' => 'Commentaire signalé avec succès'
             ], 200);
         }
     }
 
-    public function deleteComment()
+    /**
+     * Delete a comment with AJAX
+     * 
+     * @route("/actualites/show/{post_id}/comment/{id}/delete", name="comment_delete", methods="GET|POST")
+     *
+     * @param Request $request
+     * @param ObjectManager $em
+     * @param Comment $comment
+     * @param Security $security
+     */
+    public function deleteComment(Request $request, ObjectManager $em, Comment $comment, Security $security)
     {
+        $user = $this->getUser();
+        if ($user && $comment) {
+            $userId = $user->getId();
+            $commentUserId = $comment->getUser()->getId();
+            $commentId = $comment->getId();
+        }
+
+
+        if (!$user) {
+            return $this->json([
+                'message' => 'Il faut être connecté pour pouvoir supprimer un commentaire !'
+            ], 401);
+        } elseif ($userId == $commentUserId || $security->isGranted('ROLE_ADMIN', $user)) {
+            $em->remove($comment);
+            $em->flush();
+            return $this->json([
+                'message' => 'Commentaire supprimé avec succès',
+                'commentId' => $commentId
+            ], 200);
+        } else {
+            return $this->json([
+                'message' => 'Une erreur s\'est produite',
+            ], 500);
+        }
 
     }
 

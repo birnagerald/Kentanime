@@ -15,20 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminCommentController extends AbstractController
 {
-    /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @param Comment $comment
-     * @param ObjectManager $em
-     * @return Response
-     */
-    public function edit(Request $request, Comment $comment, ObjectManager $em) : Response
-    {
-
-    }
-
-
 
 
 }

@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="comment">
+    <div class="comment-{{comment.id}}">
         <div class="row">
             <div class="div col-12">
                 <p class="post-metadata ml-auto">
@@ -69,10 +69,10 @@
                     <span class="metadata-author">{{ comment.user.username }}</span><span class="metadata">-</span><span
                         class="metadata-date">{{comment.createdAt|
                         date('d/m/y à h:i') }}</span><span class="comment_dot">•</span><a href="#" class="js-update"><span
-                            class="metadata-admin-action">Modifier</span></a><span class="comment_dot">•</span><a href="#"
-                        class="js-delete"><span class="metadata-admin-action">Supprimer</span></a><span class="comment_dot">•</span><a
-                        href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}" class="js-report"
-                        data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
+                            class="metadata-admin-action">Modifier</span></a><span class="comment_dot">•</span><a href="{{path('comment_delete', {'post_id': post.id, 'id': comment.id})}}"
+                        class="js-delete" data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Supprimer</span></a><span
+                        class="comment_dot">•</span><a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}"
+                        class="js-report" data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
 
                     {% else %}
                     <span class="metadata-author">{{ comment.user.username }}</span><span class="metadata">-</span><span
@@ -84,7 +84,8 @@
                     <a href="#" class="js-update"><span class="metadata-admin-action">Modifier</span></a>
 
                     <span class="comment_dot">•</span>
-                    <a href="#" class="js-delete"><span class="metadata-admin-action">Supprimer</span></a>
+                    <a href="{{path('comment_delete', {'post_id': post.id, 'id': comment.id})}}" class="js-delete"
+                        data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Supprimer</span></a>
 
 
                     <span class="comment_dot">•</span>
@@ -114,7 +115,7 @@
 
             </div>
 
-            <div class="div col-12 mb-5">
+            <div class="div col-12 mb-5 comment-content-{{comment.id}}">
                 {{comment.content}}
 
             </div>
