@@ -39,3 +39,9 @@ services:
     App\Listener\ImageCacheSubscriber:
         tags:
         - { name: doctrine.event_subscriber }
+        
+    App.form.type.task:
+        class: App\Form\UserType
+        arguments: ["@security.authorization_checker"]
+        tags:
+        - { name: form.type }

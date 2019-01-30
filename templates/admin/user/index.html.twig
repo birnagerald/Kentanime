@@ -9,9 +9,9 @@
 
     {% for message in app.flashes('success') %}
 
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
 
     {% endfor %}
 
@@ -25,24 +25,25 @@
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+            {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>
                     <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-secondary">Consulter</a>
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+
                     <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-secondary">Éditer</a>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
                     {{ include('admin/user/_delete_form.html.twig') }}
                     {% endif %}
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
                 <td colspan="5">Aucun résultat trouvé</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
 </div>
