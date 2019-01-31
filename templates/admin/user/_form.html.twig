@@ -1,16 +1,11 @@
 {{ form_start(form) }}
 <div class="row">
-    <div class="col md-4">{{ form_row(form.username) }}</div>
+    <div class="col md-4">
+        {{ form_row(form.username) }}</div>
 </div>
-
-
 {% if form.formbar is defined %}
-<div class="row"></div>
-<div class="col md-4">{{ form_row(form.roles)}}</div>
-</div>
-{% endif %}
-
-
-
-<button class="btn btn-primary float-right mb-5">{{ button |default('Enregistrer') }}</button>
-{{ form_end(form) }}
+    <div class="row"></div>
+    <div class="col md-4">
+        {{ form_row(form.roles)}}</div>
+</div>{% endif %}<button class="btn btn-primary float-right mb-5">
+{{ button |default('Enregistrer') }}</button>{{ form_end(form) }}

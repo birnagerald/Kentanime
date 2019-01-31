@@ -34,26 +34,44 @@ class NewsController extends AbstractController
      * @param Security $security
      * @param ObjectManager $em
      * @param Request $request
+     * @return Response
      */
-    public function show(Post $post, Request $request, ObjectManager $em, Security $security)
+    public function show(Post $post, Request $request, ObjectManager $em, Security $security) : Response
     {
         $comment = new Comment();
         $user = $security->getUser();
 
         $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            $comment->setPost($post);
-            $comment->setUser($user);
+                $comment->setPost($post);
+                $comment->setUser($user);
 
-            $this->em = $em;
-            $this->em->persist($comment);
+                $this->em = $em;
+                $this->em->persist($comment);
 
-            $this->em->flush();
+                $this->em->flush();
+                if (!$user) {
+                    return $this->json([
+                        'message' => 'Il faut être connecté pour pouvoir signaler un commentaire !'
+                    ], 401);
+                } else {
+                    $commentResponse = ['content' => $comment->getContent(), 'id' => $comment->getId(), 'user' => $user->getUsername()];
+                    return $this->json([
+                        'message' => 'Commentaire bien ajouté',
+                        'comment' => json_encode($commentResponse),
 
-            return $this->redirectToRoute('news_show', array('id' => $post->getId()));
+                    ], 200);
+                }
+
+            } else {
+                return $this->json([
+                    'message' => 'Formulaire invalide veuillez entrer un commentaire valide'
+                ], 409);
+            }
         }
 
 
