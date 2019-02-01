@@ -17,6 +17,7 @@
 #sidebar {
     border-left: 2px solid black;
 
+
 }
 
 /* TEST
@@ -95,7 +96,7 @@ body {
     font-size: 15px;
     line-height: 1.42857;
     color: black;
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(238, 238, 238);
     padding-top: 60px;
 }
 
