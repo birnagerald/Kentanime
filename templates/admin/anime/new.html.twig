@@ -4,14 +4,18 @@
 
 {% block body_id 'blog_index' %}
 
-{% block main %}   
+{% block main %}
 
-    <div class="container mt-4">
+<div class="container mt-4">
 
-        <h1>Créer une page d'anime</h1>
+    <h1>Créer une page d'anime</h1>
 
-        {{ include ('admin/anime/_form.html.twig', {button: 'Créer'}) }}
+    {{ include ('admin/anime/_form.html.twig', {button: 'Créer'}) }}
 
 
-    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('/js/appEpisodeJS.js') }}"></script>
 {% endblock %}

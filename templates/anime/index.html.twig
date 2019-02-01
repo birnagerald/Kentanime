@@ -22,7 +22,7 @@
                     <a href="{{ path('anime_show', {'id': anime.id}) }}">{% if anime.filename %}
                         <img src="{{vich_uploader_asset(anime, 'imageFile') | imagine_filter('thumb2') }}">
                         {% else %}
-                        <img src="{{ asset('css/images/article-thumb.jpg') | imagine_filter('thumb2')}}">
+                        <img src="{{ asset('css/images/anime-thumb.jpg') | imagine_filter('thumb2')}}">
                         {% endif %}</a>
                     <div class="title-catalogue">
                         <h2>{{anime.title}}</h2>

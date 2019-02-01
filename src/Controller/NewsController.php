@@ -59,7 +59,8 @@ class NewsController extends AbstractController
                         'message' => 'Il faut être connecté pour pouvoir signaler un commentaire !'
                     ], 401);
                 } else {
-                    $commentResponse = ['content' => $comment->getContent(), 'id' => $comment->getId(), 'user' => $user->getUsername()];
+
+                    $commentResponse = ['content' => $comment->getContent(), 'id' => $comment->getId(), 'user' => $user->getUsername(), 'createdAt' => $comment->getCreatedAt()];
                     return $this->json([
                         'message' => 'Commentaire bien ajouté',
                         'comment' => json_encode($commentResponse),
