@@ -3,30 +3,29 @@
         <div class="col-xl-3">
             <div class="container-thumbnail d-flex justify-content-center">
                 {% if post.filename %}
-                    <img src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}">
-                        {% else %}
-                        <img src="{{ asset('css/images/article-thumb.jpg') | imagine_filter('thumb')}}">
-                        {% endif %}
-                    </div>
-                </div>
-                <article class="post col-xl-9">
-                    <h1>
-                        <a href="{{ path('news_show', {'id': post.id}) }}">
-                            {{ post.title }}
-                        </a>
-                    </h1>
-                    <p class="post-metadata">
-                        <span class="metadata-categories">
-                            {{ post.category.title }}</span>
-                        <span class="metadata-author">
-                            {{ post.user.username }}</span>
-                        <span class="metadata">-</span>
-                        <span class="metadata-date">
-                            {{ post.createdAt | date('d/m/y') }}</span>
-                    </p>
-                    <p class="post-metadata-preview">
-                        {{ post.content|length > 200 ? (post.content|slice(0, 150) ~ '...')|striptags|raw : post.content|raw }}</p>
-                </article>
+                <img src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}">
+                {% else %}
+                <img src="{{ asset('css/images/article-thumb.jpg') | imagine_filter('thumb')}}">
+                {% endif %}
             </div>
         </div>
-    
+        <article class="post col-xl-9">
+            <h1>
+                <a href="{{ path('news_show', {'id': post.id}) }}">
+                    {{ post.title }}
+                </a>
+            </h1>
+            <p class="post-metadata">
+                <span class="metadata-categories">
+                    {{ post.category.title }}</span>
+                <span class="metadata-author">
+                    {{ post.user.username }}</span>
+                <span class="metadata">-</span>
+                <span class="metadata-date">
+                    {{ post.createdAt | date('d/m/y') }}</span>
+            </p>
+            <p class="post-metadata-preview">
+                {{ post.content|length > 200 ? (post.content|slice(0, 150) ~ '...')|striptags|raw : post.content|raw }}</p>
+        </article>
+    </div>
+</div>

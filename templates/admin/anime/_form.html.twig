@@ -1,49 +1,56 @@
-        {{ form_start(form) }}
-        <div class="row">
-            <div class="col md-4">{{ form_row(form.title) }}</div>    
+{{ form_start(form) }}
+<div class="row">
+    <div class="col md-4">{{ form_row(form.title) }}</div>
+    <div class="col md-4">{{ form_row(form.imageFile) }}</div>
+</div>
+
+<div class="row">
+    <div class="col md-4">{{ form_row(form.description) }}</div>
+</div>
+
+<div class="row">
+    <div class="col md-2">{{ form_row(form.anneeDeProduction) }}</div>
+    <div class="col md-2">{{ form_row(form.studio) }}</div>
+    <div class="col md-2">{{ form_row(form.classification) }}</div>
+</div>
+
+<div class="container mt-4">
+
+
+    <ul class="episodes">
+
+        <h2>Liste des épisodes de la série</h2>
+
+        <table class="table table-striped">
+            <tbody>
+
+                {% for episode in form.episodes %}
+                <tr>
+                    <td>
+                        <li>{{ form_row(episode.titre) }}</li>
+                    </td>
+                    <td>
+                        <li>{{ form_row(episode.numero) }}</li>
+                    </td>
+                    <td>
+                        <li>{{ form_row(episode.lien) }}</li>
+                    </td>
+                </tr>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+        <div class="episode row" data-prototype="<tbody><tr><td><li><div class=&quot;form-group&quot;><label for=&quot;anime_episodes___name___titre&quot; class=&quot;required&quot;>Titre</label><input type=&quot;text&quot; id=&quot;anime_episodes___name___titre&quot; name=&quot;anime[episodes][__name__][titre]&quot; required=&quot;required&quot; maxlength=&quot;255&quot; class=&quot;form-control&quot; /></div></li></td><td><li><div class=&quot;form-group&quot;><label for=&quot;anime_episodes___name___numero&quot; class=&quot;required&quot;>Numero</label><input type=&quot;text&quot; id=&quot;anime_episodes___name___numero&quot; name=&quot;anime[episodes][__name__][numero]&quot; required=&quot;required&quot; class=&quot;form-control&quot; /></div></li></td><td><li><div class=&quot;form-group&quot;><label for=&quot;anime_episodes___name___lien&quot; class=&quot;required&quot;>Lien</label><input type=&quot;text&quot; id=&quot;anime_episodes___name___lien&quot; name=&quot;anime[episodes][__name__][lien]&quot; required=&quot;required&quot; maxlength=&quot;255&quot; class=&quot;form-control&quot; /></div></li></td></tr></tbody>">
+
         </div>
 
-        <div class="row">
-            <div class="col md-4">{{ form_row(form.description) }}</div>
-        </div>
+    </ul>
 
-        <div class="row">
-            <div class="col md-2">{{ form_row(form.anneeDeProduction) }}</div>
-            <div class="col md-2">{{ form_row(form.studio) }}</div>
-            <div class="col md-2">{{ form_row(form.classification) }}</div>
-        </div>
+</div>
 
-        <div class="container mt-4">
-            
-                
-                <ul class="episodes">
-                                
-                        <h2>Liste des épisodes de la série</h2>
 
-                        <table class="table table-striped">
-                            <tbody>
 
-                                {% for episode in form.episodes %}
-                                <tr>
-                                    <td><li>{{ form_row(episode.titre) }}</li></td>
-                                    <td><li>{{ form_row(episode.numero) }}</li></td>
-                                    <td><li>{{ form_row(episode.lien) }}</li></td>
-                                </tr>
-                                {% endfor %} 
-                        
-                    
-                            </tbody>
-                        </table>
-                    <div class="episode row" data-prototype="<tbody><tr><td><li><div class=&quot;form-group&quot;><label for=&quot;anime_episodes___name___titre&quot; class=&quot;required&quot;>Titre</label><input type=&quot;text&quot; id=&quot;anime_episodes___name___titre&quot; name=&quot;anime[episodes][__name__][titre]&quot; required=&quot;required&quot; maxlength=&quot;255&quot; class=&quot;form-control&quot; /></div></li></td><td><li><div class=&quot;form-group&quot;><label for=&quot;anime_episodes___name___numero&quot; class=&quot;required&quot;>Numero</label><input type=&quot;text&quot; id=&quot;anime_episodes___name___numero&quot; name=&quot;anime[episodes][__name__][numero]&quot; required=&quot;required&quot; class=&quot;form-control&quot; /></div></li></td><td><li><div class=&quot;form-group&quot;><label for=&quot;anime_episodes___name___lien&quot; class=&quot;required&quot;>Lien</label><input type=&quot;text&quot; id=&quot;anime_episodes___name___lien&quot; name=&quot;anime[episodes][__name__][lien]&quot; required=&quot;required&quot; maxlength=&quot;255&quot; class=&quot;form-control&quot; /></div></li></td></tr></tbody>">
-                    
-                    </div>
-                    
-                </ul>
+<button class="btn btn-primary float-right mb-5">{{ button |default('Enregistrer') }}</button>
 
-        </div>
-
-            
-
-        <button class="btn btn-primary float-right mb-5">{{ button |default('Enregistrer') }}</button>
-
-        {{ form_end(form) }}
+{{ form_end(form) }}

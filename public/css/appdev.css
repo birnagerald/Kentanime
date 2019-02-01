@@ -173,6 +173,17 @@ header .locales a {
 
 }
 
+.title-catalogue {
+    border-top: 2px solid;
+    text-align: center;
+    padding-top: 8px;
+    max-width: 250px;
+}
+
+.title-catalogue>h2 {
+    font-size: 15px !important;
+}
+
 .body-container #main h4 {
     margin-top: 0;
     font-size: 22px;
@@ -434,6 +445,7 @@ table {
 
 }
 
+
 /* Common Blog page elements
    ------------------------------------------------------------------------- */
 .post-metadata {
@@ -537,7 +549,7 @@ body#blog_index .post-tags .label-default i {
 .container-banniere img {
 
     width: 100%;
-    height: auto;
+    height: 357px;
     border-bottom: 2px solid black;
 
 
@@ -553,14 +565,17 @@ body#blog_index .post-tags .label-default i {
 .container-thumbnail-catalogue {
     border: 2px solid #000;
     margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
 
 }
 
 .container-thumbnail-catalogue img {
 
-    width: 250px;
-    height: 250px;
+    width: auto;
+    height: auto;
 
     display: flex;
     flex-direction: row;
@@ -570,6 +585,8 @@ body#blog_index .post-tags .label-default i {
 
 figure {
     margin: 0;
+    width: 250px;
+    max-height: 350px;
 }
 
 figcaption {

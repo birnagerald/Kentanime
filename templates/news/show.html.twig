@@ -24,9 +24,9 @@
         </div>
         <div class="container-banniere">
             {% if post.filename %}
-            <img alt="Page img" src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('banner')}}" alt="Page img">
+            <img alt="Page img" src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb3')}}" alt="Page img">
             {% else %}
-            <img src="{{ asset('css/images/article-banner.jpg') | imagine_filter('banner')}}" alt="Page img">
+            <img src="{{ asset('css/images/article-banner.jpg') | imagine_filter('thumb3')}}" alt="Page img">
             {% endif %}
         </div>
     </div>

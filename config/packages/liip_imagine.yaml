@@ -6,13 +6,26 @@ liip_imagine:
         thumbnail:
           size:          [200, 120]
           mode:          outbound
+        background: 
+          position: center
 
-    banner:
-      quality: 100
+    thumb2:
+      quality: 75
+      filters:
+        thumbnail:
+          size:          [250, 150]
+          mode:          outbound
+        background: 
+          position: center
+
+    thumb3:
+      quality: 75
       filters:
         upscale:
-          min:           [1427.250, 350]
-          allow_upscale: true
+          min: [1428, 350]
+        background: 
+          position: center
+
 
 #liip_imagine:
 #    # valid drivers options include "gd" or "gmagick" or "imagick"

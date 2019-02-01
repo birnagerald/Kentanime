@@ -5,24 +5,34 @@
 {% block body_id 'blog_index' %}
 
 {% block main %}
-    <div class="test-main">
-        
-        <div class="container-fluid p-l-r-0">
-            <div class="container-banniere">
-                <img class="w-100" src="{{ asset('css/images/listedesanimes-banner.jpg') }}" alt="Catalogue img">
-            </div>
+<div class="test-main">
 
+    <div class="container-fluid p-l-r-0">
+        <div class="container-banniere">
+            <img class="w-100" src="{{ asset('css/images/listedesanimes-banner.jpg') }}" alt="Catalogue img">
         </div>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="page-listing d-flex flex-row flex-wrap">
-                    {% for anime in animes %}
-                        <div class="container-thumbnail-catalogue ml-3"><figure><a href="{{ path('anime_show', {'id': anime.id}) }}"><img src="{{ asset('css/images/pageAnime-banner.jpg') }}" alt=""></img></a><figcaption><h2>{{anime.title}}</h2></figcaption></figure></div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        
     </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-listing d-flex flex-row flex-wrap">
+                {% for anime in animes %}
+                <div class="container-thumbnail-catalogue ml-3">
+                    <a href="{{ path('anime_show', {'id': anime.id}) }}">{% if anime.filename %}
+                        <img src="{{vich_uploader_asset(anime, 'imageFile') | imagine_filter('thumb2') }}">
+                        {% else %}
+                        <img src="{{ asset('css/images/article-thumb.jpg') | imagine_filter('thumb2')}}">
+                        {% endif %}</a>
+                    <div class="title-catalogue">
+                        <h2>{{anime.title}}</h2>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}
