@@ -9,7 +9,7 @@
 
 .test-sidebar {
     width: 100%;
-    height: 100%;
+    height: 100vh;
 
 
 }
@@ -18,28 +18,6 @@
     border-left: 2px solid black;
 
 }
-
-
-.main-page {
-    width: 100%;
-    height: 100%;
-
-
-
-}
-
-.aside-page {
-    width: 100%;
-    border-left: 2px solid black;
-
-}
-
-
-
-
-
-
-
 
 /* TEST
    ------------------------------------------------------------------------- */
@@ -244,6 +222,16 @@ footer #footer-ressources {
     border-style: solid;
     border-color: black;
     background-color: black;
+}
+
+.sep-horizontal-bar-full-sidebar {
+    width: 80%;
+    height: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: black;
+    display: none;
+
 }
 
 .page-link {
@@ -618,6 +606,18 @@ li {
     margin-left: 4px;
 }
 
+
+/* Comments
+   ------------------------------------------------------------------------- */
+
+.rs-sidebar {
+    font-weight: 1000;
+    text-align: center;
+    border: 4px solid black;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
 @media (max-width: 1200px) {
 
     .test-main {
@@ -625,18 +625,26 @@ li {
 
     }
 
-    .aside-page {
+    #sidebar {
         border: 0;
     }
 
     .container-banniere img {
         height: auto;
     }
-}
 
-@media (max-width: 1200px) {
     .container-thumbnail {
         margin-bottom: 5vh;
+    }
+
+    .sep-horizontal-bar-full-sidebar {
+        width: 80%;
+        height: 3px;
+        border-style: solid;
+        border-color: black;
+        background-color: black;
+        display: block;
+
     }
 
 }
