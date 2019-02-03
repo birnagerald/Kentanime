@@ -13,14 +13,14 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
-        ;
+            ->add('description');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Category::class,
+            'translation_domain' => 'forms',
         ]);
     }
 }

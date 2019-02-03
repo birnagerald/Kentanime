@@ -15,8 +15,9 @@ class AdminCategoryController extends AbstractController
 {
     /**
      * @Route("/admin/category", name="admin_category_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
-    public function index(CategoryRepository $categoryRepository): Response
+    public function index(CategoryRepository $categoryRepository) : Response
     {
         return $this->render('admin/category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
@@ -25,8 +26,10 @@ class AdminCategoryController extends AbstractController
 
     /**
      * @Route("/admin/category/new", name="admin_category_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
-    function new (Request $request): Response {
+    function new(Request $request) : Response
+    {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -46,9 +49,16 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
+     * Edit a category
+     * 
      * @Route("/admin/category/{id}/edit", name="admin_category_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     *
+     * @param Request $request
+     * @param Category $category
+     * @return Response
      */
-    public function edit(Request $request, Category $category): Response
+    public function edit(Request $request, Category $category) : Response
     {
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -72,7 +82,7 @@ class AdminCategoryController extends AbstractController
      * @Route("/admin/category/{id}", name="admin_category_delete", methods={"DELETE"})
      * @IsGranted("ROLE_SUPER_ADMIN")
      */
-    public function delete(Request $request, Category $category): Response
+    public function delete(Request $request, Category $category) : Response
     {
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

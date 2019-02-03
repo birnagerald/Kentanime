@@ -47,19 +47,19 @@ class NewsController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $comment->setPost($post);
-                $comment->setUser($user);
 
-                $this->em = $em;
-                $this->em->persist($comment);
-
-                $this->em->flush();
                 if (!$user) {
                     return $this->json([
-                        'message' => 'Il faut être connecté pour pouvoir signaler un commentaire !'
+                        'message' => 'Il faut être connecté pour pouvoir ajouter un commentaire !'
                     ], 401);
                 } else {
+                    $comment->setPost($post);
+                    $comment->setUser($user);
 
+                    $this->em = $em;
+                    $this->em->persist($comment);
+
+                    $this->em->flush();
                     $commentResponse = ['content' => $comment->getContent(), 'id' => $comment->getId(), 'user' => $user->getUsername(), 'createdAt' => $comment->getCreatedAt()];
                     return $this->json([
                         'message' => 'Commentaire bien ajouté',
@@ -153,6 +153,77 @@ class NewsController extends AbstractController
                 'message' => 'Une erreur s\'est produite',
             ], 500);
         }
+
+    }
+
+    /**
+     * Update a comment with AJAX
+     * first ajax request GET (query the content of the current comment)
+     * second ajax request POST (send the new comment and query the new content)
+     * 
+     * @route("/actualites/show/{post_id}/comment/{id}/edit", name="comment_update", methods="GET|POST")
+     *
+     * @param Comment $comment
+     * @param Request $request
+     * @param ObjectManager $em
+     * @param Security $security
+     * @return Response
+     */
+    public function updateComment(Comment $comment, Request $request, ObjectManager $em, Security $security) : Response
+    {
+        $user = $this->getUser();
+        if ($user && $comment) {
+            $userId = $user->getId();
+            $commentUserId = $comment->getUser()->getId();
+            $commentId = $comment->getId();
+        }
+
+
+        if ($request->getMethod() == 'POST') {
+            $form = $this->createForm(CommentType::class, $comment);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                if (!$user) {
+                    return $this->json([
+                        'message' => 'Il faut être connecté pour pouvoir supprimer un commentaire !'
+                    ], 401);
+                } elseif ($userId == $commentUserId || $security->isGranted('ROLE_ADMIN', $user)) {
+                    $this->em = $em;
+                    $this->em->flush();
+                    return $this->json([
+                        'message' => 'Commentaire modifié avec succès',
+                        'formContent' => $form->getConfig()->getData()->getContent()
+                    ], 200);
+                } else {
+                    return $this->json([
+                        'message' => 'Une erreur s\'est produite',
+                    ], 500);
+                }
+
+            } else {
+                return $this->json([
+                    'message' => 'Formulaire non valide',
+                ], 409);
+            }
+        } else {
+            $form = $this->createForm(CommentType::class, $comment);
+            if (!$user) {
+                return $this->json([
+                    'message' => 'Il faut être connecté pour pouvoir supprimer un commentaire !'
+                ], 401);
+            } else if ($userId !== $commentUserId) {
+                return $this->json([
+                    'message' => 'Une erreur s\'est produite'
+                ], 500);
+            } else {
+                return $this->json([
+                    'formContent' => $form->getConfig()->getData()->getContent(),
+                    'commentId' => $form->getConfig()->getData()->getId()
+                ], 200);
+            }
+
+        }
+
 
     }
 
