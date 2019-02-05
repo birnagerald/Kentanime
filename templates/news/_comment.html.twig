@@ -8,10 +8,16 @@
 <div class="container">
 
     <div class="comment row">
-        <a class="comment_avatar ml-3" href="#">
-            <img src="https://fakeimg.pl/75x75/">
-        </a>
-        <div class="comment-main col">
+        <div class="container-pp col-xl-2">
+            <a class="comment_avatar ml-3" href="{{path('user_profil', {'username': app.user.username})}}">
+                {% if user.profilPicture %}
+                <img alt="Page img" src="{{vich_uploader_asset(user, 'imageFile') | imagine_filter('pp')}}" alt="Page img">
+                {% else %}
+                <img src="{{asset('css/images/profil-picture.jpg') | imagine_filter('pp')}}" alt="Page img">
+                {% endif %}
+            </a>
+        </div>
+        <div class="comment-main col-xl-10">
             {{ form_start(form) }}
 
             {{ form_row(form.content) }}
@@ -45,61 +51,77 @@
     <div class="comment-{{comment.id}}">
         <div class="row">
             <div class="div col-12">
-                <p class="post-metadata ml-auto">
-                    {% if app.user %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <span class="metadata-author">{{ comment.user.username }}</span><span class="metadata">-</span><span
-                        class="metadata-date">{{comment.createdAt|
-                        date('d/m/y à h:i') }}</span><span class="comment_dot">•</span><a href="{{path('comment_update', {'post_id': post.id, 'id': comment.id})}}"
-                        class="js-update"><span class="metadata-admin-action">Modifier</span></a><span class="comment_dot">•</span><a
-                        href="{{path('comment_delete', {'post_id': post.id, 'id': comment.id})}}" class="js-delete"
-                        data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Supprimer</span></a><span
-                        class="comment_dot">•</span><a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}"
-                        class="js-report" data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
+                <div class="row">
+                    <div class="container-pp col">
+                        <a class="comment_avatar ml-3" href="{{path('user_profil', {'username': comment.user.username})}}">
+                            {% if comment.user.profilPicture %}
+                            <img alt="Page img" src="{{asset('images/profilePictures/'~ comment.user.profilPicture) | imagine_filter('pp')}}"
+                                alt="Page img">
+                            {% else %}
+                            <img src="{{asset('css/images/profil-picture.jpg') | imagine_filter('pp')}}" alt="Page img">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="col-10 my-auto comment-metadata">
+                        <p class="post-metadata">
+                            {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <span class="metadata-author">{{ comment.user.username }}</span><span class="metadata">-</span><span
+                                class="metadata-date">{{comment.createdAt|
+                                date('d/m/y à h:i') }}</span><span class="comment_dot">•</span><a href="{{path('comment_update', {'post_id': post.id, 'id': comment.id})}}"
+                                class="js-update"><span class="metadata-admin-action">Modifier</span></a><span class="comment_dot">•</span><a
+                                href="{{path('comment_delete', {'post_id': post.id, 'id': comment.id})}}" class="js-delete"
+                                data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Supprimer</span></a><span
+                                class="comment_dot">•</span><a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}"
+                                class="js-report" data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
 
-                    {% else %}
-                    <span class="metadata-author">{{ comment.user.username }}</span><span class="metadata">-</span><span
-                        class="metadata-date">{{comment.createdAt|
-                        date('d/m/y à h:i') }}</span>
-                    {% if user.id == comment.user.id %}
+                            {% else %}
+                            <span class="metadata-author">{{ comment.user.username }}</span><span class="metadata">-</span><span
+                                class="metadata-date">{{comment.createdAt|
+                                date('d/m/y à h:i') }}</span>
+                            {% if user.id == comment.user.id %}
 
-                    <span class="comment_dot">•</span>
-                    <a href="{{path('comment_update', {'post_id': post.id, 'id': comment.id})}}" class="js-update"><span
-                            class="metadata-admin-action">Modifier</span></a>
+                            <span class="comment_dot">•</span>
+                            <a href="{{path('comment_update', {'post_id': post.id, 'id': comment.id})}}" class="js-update"><span
+                                    class="metadata-admin-action">Modifier</span></a>
 
-                    <span class="comment_dot">•</span>
-                    <a href="{{path('comment_delete', {'post_id': post.id, 'id': comment.id})}}" class="js-delete"
-                        data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Supprimer</span></a>
-
-
-                    <span class="comment_dot">•</span>
-                    <a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}" class="js-report"
-                        data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
-
-                    {% else %}
-
-
-                    <span class="comment_dot">•</span>
-                    <a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}" class="js-report"
-                        data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
-                    {% endif %}
-                    {% endif %}
+                            <span class="comment_dot">•</span>
+                            <a href="{{path('comment_delete', {'post_id': post.id, 'id': comment.id})}}" class="js-delete"
+                                data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Supprimer</span></a>
 
 
-                    {% else %}
-                    <span class="metadata-author">{{ comment.user.username }}</span><span class="metadata">-</span><span
-                        class="metadata-date">{{comment.createdAt|
-                        date('d/m/y à h:i') }}</span><span class="comment_dot">•</span><a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}"
-                        class="js-report" data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
-                    {% endif %}
+                            <span class="comment_dot">•</span>
+                            <a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}" class="js-report"
+                                data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
+
+                            {% else %}
+
+
+                            <span class="comment_dot">•</span>
+                            <a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}" class="js-report"
+                                data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
+                            {% endif %}
+                            {% endif %}
+
+
+                            {% else %}
+                            <span class="metadata-author">{{ comment.user.username }}</span><span class="metadata">-</span><span
+                                class="metadata-date">{{comment.createdAt|
+                                date('d/m/y à h:i') }}</span><span class="comment_dot">•</span><a href="{{path('comment_report', {'post_id': post.id, 'id': comment.id})}}"
+                                class="js-report" data-toggle="modal" data-target="#Modal"><span class="metadata-admin-action">Signaler</span></a>
+                            {% endif %}
 
 
 
-                </p>
+                        </p>
+                    </div>
+
+                </div>
+
 
             </div>
 
-            <div class="col-12 mb-5 comment-content-{{comment.id}}">
+            <div class="col-12 mb-5 comment-content-{{comment.id}} comment-content-text">
                 {{comment.content}}
 
             </div>

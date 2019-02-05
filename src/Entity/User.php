@@ -2,16 +2,23 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use ReflectionClass;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks
  */
 class User implements UserInterface
 {
@@ -21,6 +28,34 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * Undocumented variable
+     *
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $profilPicture;
+
+    /**
+     * Undocumented variable
+     *
+     * @var File|null
+     * @Vich\UploadableField(mapping="user_image", fileNameProperty="profilPicture")
+     * @Assert\Image(
+     * mimeTypes="image/jpeg",
+     * minWidth = 250,
+     * maxWidth = 250,
+     * minHeight = 250,
+     * maxHeight = 250,
+     * mimeTypesMessage = "Merci d'uploader une image au format jpeg",
+     * maxWidthMessage = "La largeur maximal autorisé est de {{ max_width }}px",
+     * minWidthMessage = "La largeur minimal autorisé est de {{ min_width }}px",
+     * maxHeightMessage = "La hauteur maximal autorisé est de {{ max_height }}px",
+     * minHeightMessage ="La hauteur minimal autorisé est de {{ min_height }}px"
+     * )
+     */
+    protected $imageFile;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -54,13 +89,24 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId() : ? int
     {
         return $this->id;
     }
@@ -70,12 +116,12 @@ class User implements UserInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUsername() : string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername(string $username) : self
     {
         $this->username = $username;
 
@@ -85,19 +131,19 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
+    public function getRoles() : array
     {
         $roles = $this->roles;
         if (empty($roles)) {
             // guarantee every user at least has ROLE_USER
-        $roles[] = "ROLE_USER";
+            $roles[] = "ROLE_USER";
         }
-        
+
 
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(array $roles) : self
     {
         $this->roles = $roles;
 
@@ -107,12 +153,12 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getPassword(): string
+    public function getPassword() : string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(string $password) : self
     {
         $this->password = $password;
 
@@ -139,12 +185,12 @@ class User implements UserInterface
     /**
      * @return Collection|Post[]
      */
-    public function getPosts(): Collection
+    public function getPosts() : Collection
     {
         return $this->posts;
     }
 
-    public function addPost(Post $post): self
+    public function addPost(Post $post) : self
     {
         if (!$this->posts->contains($post)) {
             $this->posts[] = $post;
@@ -154,7 +200,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removePost(Post $post): self
+    public function removePost(Post $post) : self
     {
         if ($this->posts->contains($post)) {
             $this->posts->removeElement($post);
@@ -170,12 +216,12 @@ class User implements UserInterface
     /**
      * @return Collection|Comment[]
      */
-    public function getComments(): Collection
+    public function getComments() : Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comment $comment): self
+    public function addComment(Comment $comment) : self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
@@ -185,7 +231,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeComment(Comment $comment): self
+    public function removeComment(Comment $comment) : self
     {
         if ($this->comments->contains($comment)) {
             $this->comments->removeElement($comment);
@@ -197,4 +243,102 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getCreatedAt() : ? \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt) : self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt() : ? \DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(? \DateTimeInterface $updatedAt) : self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return null|string
+     */
+    public function getProfilPicture() : ? string
+    {
+        return $this->profilPicture;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param null|string $profilPicture
+     * @return User
+     */
+    public function setProfilPicture(? string $profilPicture) : User
+    {
+        $this->profilPicture = $profilPicture;
+        return $this;
+    }
+
+
+    /**
+     * Undocumented function
+     *
+     * @return null|File
+     */
+    public function getImageFile() : ? File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param null|File $imagefile
+     * @return User
+     */
+    public function setImageFile(? File $imageFile) : User
+    {
+        $this->imageFile = $imageFile;
+
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function updateModifiedDatetime()
+    {
+        // update the modified time
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    public function __sleep()
+    {
+        $ref = new \ReflectionClass(__class__);
+        $props = $ref->getProperties(\ReflectionProperty::IS_PRIVATE);
+
+        $serialize_fields = array();
+
+        foreach ($props as $prop) {
+            $serialize_fields[] = $prop->name;
+        }
+
+        return $serialize_fields;
+    }
+
 }

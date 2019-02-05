@@ -205,6 +205,14 @@ footer #footer-ressources {
     color: white;
 }
 
+.comment-metadata {
+    margin-right: 6%;
+}
+
+.comment-content-text {
+    margin-left: 10%;
+}
+
 .fa-copyright {
     padding-top: 2px;
 }
@@ -342,6 +350,11 @@ table {
     border-bottom: 2px solid black;
 }
 
+.vl {
+    border-left: 3px solid black;
+    height: 350px;
+}
+
 /* Button
    ------------------------------------------------------------------------- */
 
@@ -429,6 +442,12 @@ table {
     height: auto;
     border: 2px solid #000;
 
+}
+
+.container-pp img {
+    width: auto;
+    height: auto;
+    border: 2px solid #000;
 }
 
 
@@ -619,6 +638,11 @@ li {
     margin-bottom: 10%;
 }
 
+
+/* Responsive
+   ------------------------------------------------------------------------- */
+
+
 @media (max-width: 1200px) {
 
     .test-main {
@@ -648,6 +672,21 @@ li {
 
     }
 
+    .container-pp {
+        margin-bottom: 10px;
+        text-align: center !important;
+
+    }
+
+}
+
+@media (max-width: 992px) {
+
+    .vl {
+        display: none;
+
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -655,6 +694,8 @@ li {
     .sep-horizontal-bar {
         width: 0%;
     }
+
+
 
 }
 

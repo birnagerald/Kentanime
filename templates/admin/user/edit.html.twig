@@ -4,7 +4,7 @@
 
 {% block body_id 'blog_index' %}
 
-{% block main %}  
+{% block main %}
 <div class="container mt-4">
     <h1>Éditer l'utilisateur : {{ user.username }}</h1>
 
@@ -13,5 +13,9 @@
     <a href="{{ path('admin_user_index') }}" class="btn btn-secondary">Retour à la liste</a>
 
     {# {{ include('admin/user/_delete_form.html.twig') }} #}
-    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('/js/appUploadJS.js') }}"></script>
 {% endblock %}

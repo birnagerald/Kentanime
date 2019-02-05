@@ -103,7 +103,7 @@ function onClickCommentNew(e) {
         $('.modal-title').html("Succès");
         $('.modal-body').html(response.data.message);
         CommentResponse = JSON.parse(response.data.comment);
-        CommentVarNew = "<div class='comment-" + CommentResponse.id + "'><div class='row'><div class='col-12'><p class='post-metadata ml-auto '><span class='metadata-author '>" + CommentResponse.user + "</span></p></div><div class='div col-12 mb-5 comment-content-" + CommentResponse.id + "'>" + CommentResponse.content + "</div></div></div><hr>"
+        CommentVarNew = "<div class='comment-" + CommentResponse.id + "'><div class='row'><div class='col-12'><p class='post-metadata ml-auto '><span class='metadata-author '>" + CommentResponse.user + "</span></p></div><div class='div col-12 mb-5 comment-content-" + CommentResponse.id + " comment-content-text'>" + CommentResponse.content + "</div></div></div><hr>"
         $('.commentaire').prepend(CommentVarNew);
 
 
@@ -166,7 +166,7 @@ function onClickCommentUpdate(e) {
 
     axios.get(url).then(function (response) {
         test = $("#comment__token").val();
-        CommentVarUpdate = "<div class='comment-main col js-comment-update'><form id='js-form-comment-update' name='comment' method='post'><div class='form-group'><textarea id='comment_content' name='comment[content]' required='required' class='form-control'>" + response.data.formContent + "</textarea></div><button data-toggle='modal' data-target='#Modal' data-url=" + url + " class='btn btn-secondary Comments-logBtn float-right js-edit'>Modifier</button><input type='hidden' id='comment__token' name='comment[_token]' value='" + test + "'></form></div>";
+        CommentVarUpdate = "<div class='comment-main col-xl-10 mt-3 js-comment-update'><form id='js-form-comment-update' name='comment' method='post'><div class='form-group'><textarea id='comment_content' name='comment[content]' required='required' class='form-control'>" + response.data.formContent + "</textarea></div><button data-toggle='modal' data-target='#Modal' data-url=" + url + " class='btn btn-secondary Comments-logBtn float-right js-edit'>Modifier</button><input type='hidden' id='comment__token' name='comment[_token]' value='" + test + "'></form></div>";
         commentId = response.data.commentId;
         $('div.comment-content-' + commentId).replaceWith(CommentVarUpdate);
 
@@ -183,7 +183,7 @@ function onClickCommentUpdate(e) {
             }).then(function (response) {
                 $('.modal-title').html("Succès");
                 $('.modal-body').html(response.data.message);
-                CommentVarUpdateAfter = "<div class='col-12 mb-5 comment-content-" + commentId + "'>" + response.data.formContent + "</div >";
+                CommentVarUpdateAfter = "<div class='col-12 mb-5 comment-content-" + commentId + " comment-content-text'>" + response.data.formContent + "</div >";
                 $('div.js-comment-update').replaceWith(CommentVarUpdateAfter);
             }).catch(function (error) {
                 if (error.response.status === 401) {

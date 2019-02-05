@@ -46,7 +46,7 @@
                             {{ app.user.username}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('user_profile') }}">Profil</a>
+                            <a class="dropdown-item" href="{{ path('user_profil', {'username': app.user.username})}}">Profil</a>
                             <a class="dropdown-item" href="{{ path('admin_index') }}">Administration</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
@@ -62,7 +62,7 @@
                             {{ app.user.username}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('user_profile') }}">Profil</a>
+                            <a class="dropdown-item" href="{{ path('user_profil', {'username': app.user.username})}}">Profil</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
                         </div>

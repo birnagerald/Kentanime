@@ -26,6 +26,15 @@ liip_imagine:
         background: 
           position: center
 
+    pp:
+      quality: 100
+      filters:
+        thumbnail:
+          size:          [75, 75]
+          mode:          outbound
+        background: 
+          position: center
+
 
 #liip_imagine:
 #    # valid drivers options include "gd" or "gmagick" or "imagick"

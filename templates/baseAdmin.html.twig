@@ -47,7 +47,7 @@
                             {{ app.user.username}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('user_profile') }}">Profil</a>
+                            <a class="dropdown-item" href="{{ path('user_profil', {'username': app.user.username})}}">Profil</a>
                             <a class="dropdown-item" href="{{ path('admin_index') }}">Administration</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
@@ -63,7 +63,7 @@
                             {{ app.user.username}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('user_profile') }}">Profil</a>
+                            <a class="dropdown-item" href="{{ path('user_profil', {'username': app.user.username})}}">Profil</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
                         </div>
@@ -136,7 +136,6 @@
         crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1"
         crossorigin="anonymous"></script>
-    <script src="{{ asset('/js/appUploadJS.js') }}"></script>
     {% endblock %}
 
 

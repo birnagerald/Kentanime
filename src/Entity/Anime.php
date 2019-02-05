@@ -47,7 +47,8 @@ class Anime
      * @var File|null
      * @Vich\UploadableField(mapping="anime_image", fileNameProperty="filename")
      * @Assert\Image(
-     * mimeTypes="image/jpeg"
+     * mimeTypes="image/jpeg",
+     * mimeTypesMessage = "Merci d'uploader une image au format jpeg"
      * )
      */
     private $imageFile;

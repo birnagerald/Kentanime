@@ -185,7 +185,7 @@ class NewsController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 if (!$user) {
                     return $this->json([
-                        'message' => 'Il faut être connecté pour pouvoir supprimer un commentaire !'
+                        'message' => 'Il faut être connecté pour pouvoir modifier un commentaire !'
                     ], 401);
                 } elseif ($userId == $commentUserId || $security->isGranted('ROLE_ADMIN', $user)) {
                     $this->em = $em;
@@ -207,19 +207,19 @@ class NewsController extends AbstractController
             }
         } else {
             $form = $this->createForm(CommentType::class, $comment);
-            if (!$user) {
+            if ($userId == $commentUserId || $security->isGranted('ROLE_ADMIN', $user)) {
                 return $this->json([
-                    'message' => 'Il faut être connecté pour pouvoir supprimer un commentaire !'
-                ], 401);
+                    'formContent' => $form->getConfig()->getData()->getContent(),
+                    'commentId' => $form->getConfig()->getData()->getId()
+                ], 200);
             } else if ($userId !== $commentUserId) {
                 return $this->json([
                     'message' => 'Une erreur s\'est produite'
                 ], 500);
             } else {
                 return $this->json([
-                    'formContent' => $form->getConfig()->getData()->getContent(),
-                    'commentId' => $form->getConfig()->getData()->getId()
-                ], 200);
+                    'message' => 'Il faut être connecté pour pouvoir modifier un commentaire !'
+                ], 401);
             }
 
         }

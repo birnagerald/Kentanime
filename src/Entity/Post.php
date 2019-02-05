@@ -39,7 +39,8 @@ class Post
      * @var File|null
      * @Vich\UploadableField(mapping="post_image", fileNameProperty="filename")
      * @Assert\Image(
-     * mimeTypes="image/jpeg"
+     * mimeTypes="image/jpeg",
+     * mimeTypesMessage = "Merci d'uploader une image au format jpeg"
      * )
      */
     private $imageFile;

@@ -1,15 +1,63 @@
 {% extends 'base.html.twig' %}
-{% block title %}
+{% block title %}Profile de
 {{ user.username }}{% endblock %}
 {% block body_id 'blog_index' %}
 {% block main %}
 <div class="test-main">
     <div class="container-fluid p-l-r-0">
-
         <div class="container-banniere">
-            <img src="{{ asset('css/images/userpage-banner.jpg') | imagine_filter('thumb3')}}" alt="Page img">
+            <img src="{{ asset('css/images/userpage-banner.jpg') | imagine_filter('thumb3') }}" alt="Page img">
         </div>
     </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="container-pp">
+                    {% if user.profilPicture %}
+                    <img alt="Page img" src="{{vich_uploader_asset(user, 'imageFile')}}" alt="Page img">
+                    {% else %}
+                    <img src="{{asset('css/images/profil-picture.jpg')}}" alt="Page img">
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="col vl"></div>
+            <div class="col-lg-7">
+                {% for message in app.flashes('success') %}
+
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+
+                {% endfor %}
+                <h2>Pseudo : <span>{{ user.username }}</span></h2>
+                {% if app.user.username == user.username or is_granted('ROLE_ADMIN') %}
+                {{ form_start(form) }}
+                <div class="row">
+                    {% if form.username is defined %}
+                    <div class="col md-2">
+                        {{ form_row(form.username) }}</div>
+                    {% endif %}
+                    <div class="col md-2">{{ form_row(form.imageFile) }}</div>
+                </div>
+                <button class="btn btn-primary float-right mb-5">
+                    {{ button |default('Éditer') }}</button>
+                {{ form_end(form) }}
+                {% endif %}
+
+
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
+
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('/js/appUploadJS.js') }}"></script>
 {% endblock %}
