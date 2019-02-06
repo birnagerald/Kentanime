@@ -1,0 +1,59 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gérer les commentaires{% endblock %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}
+
+<div class="container mt-4">
+
+    <h1>Gérer les commentaires</h1>
+
+    {% for message in app.flashes('success') %}
+
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+
+    {% endfor %}
+
+    <h2>Liste des commentaires signalés</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Auteur</h1>
+                <th>Commentaire</h1>
+                <th>Article</h1>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for comment in comments %}
+
+            <tr>
+                <td>{{ comment.user.username }}</td>
+                <td>{{ comment.content }}</td>
+                <td><a href="{{ path('news_show', {id: comment.post.id}) }}">{{ comment.post.title }}</a></td>
+
+                <td><a href="{{ path('admin_comment_edit', {id: comment.id}) }}" class="btn btn-secondary">Éditer</a>
+                    <form method="post" action="{{ path('admin_comment_delete', {id: comment.id}) }}" style="display: inline-block"
+                        onsubmit="return confirm('Confirmer la Supression ?')">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+
+
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

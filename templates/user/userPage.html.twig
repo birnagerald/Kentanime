@@ -49,9 +49,10 @@
 
 
             </div>
-
+            {% if app.user.username == user.username %}
             <a href="{{ path('user_reset_password', {'username': app.user.username})}}"><button class="btn btn-primary">Modifier
                     mon mot de passe</button></a>
+            {% endif %}
         </div>
     </div>
 

@@ -75,7 +75,7 @@ class UserPageController extends AbstractController
 
                 return $this->redirectToRoute('user_profil', ['username' => $user->getUsername()]);
             } else {
-                $form->addError(new FormError('Ancien mot de passe incorrect'));
+                $form->addError(new FormError('Mot de passe actuel incorrect'));
             }
         }
 
