@@ -64,6 +64,11 @@ class NewsController extends AbstractController
                     return $this->json([
                         'message' => 'Commentaire bien ajouté',
                         'comment' => json_encode($commentResponse),
+                        'response' => $this->render('news/show.html.twig', [
+                            'post' => $post,
+                            'user' => $user,
+                            'form' => $form->createView(),
+                        ])
 
                     ], 200);
                 }

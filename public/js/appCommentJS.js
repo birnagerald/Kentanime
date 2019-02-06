@@ -102,9 +102,75 @@ function onClickCommentNew(e) {
     }).then(function (response) {
         $('.modal-title').html("Succès");
         $('.modal-body').html(response.data.message);
-        CommentResponse = JSON.parse(response.data.comment);
-        CommentVarNew = "<div class='comment-" + CommentResponse.id + "'><div class='row'><div class='col-12'><p class='post-metadata ml-auto '><span class='metadata-author '>" + CommentResponse.user + "</span></p></div><div class='div col-12 mb-5 comment-content-" + CommentResponse.id + " comment-content-text'>" + CommentResponse.content + "</div></div></div><hr>"
-        $('.commentaire').prepend(CommentVarNew);
+
+        $pageResponse = (response.data.response.content);
+        $test = $pageResponse.split('<div class="commentaire container mt-5">');
+        $test2 = $test[1].split('<span class="js-limit">');
+        console.log($test2[0]);
+
+        $('div.commentaire').html(($test2[0]));
+
+        // --------------------Report---------------------- //
+
+        jQuery(document).ready(function () {
+
+            $('[data-toggle=modal]').on('click', function (e) {
+                let $target = $($(this).data('target'));
+                $target.data('triggered', true);
+                setTimeout(function () {
+                    if ($target.data('triggered')) {
+                        $target.modal('show').data('triggered', false);
+                    };
+                }, 1000); // milliseconds
+                return false;
+            });
+            document.querySelectorAll('a.js-report').forEach(function (comment) {
+                comment.addEventListener('click', onClickCommentReport);
+            })
+
+        })
+
+        // --------------------Delete---------------------- //
+
+
+        jQuery(document).ready(function () {
+
+            $('[data-toggle=modal]').on('click', function (e) {
+                let $target = $($(this).data('target'));
+                $target.data('triggered', true);
+                setTimeout(function () {
+                    if ($target.data('triggered')) {
+                        $target.modal('show').data('triggered', false);
+                    };
+                }, 1000); // milliseconds
+                return false;
+            });
+            document.querySelectorAll('a.js-delete').forEach(function (comment) {
+                comment.addEventListener('click', onClickCommentDelete);
+            })
+
+        })
+
+        // --------------------Update---------------------- //
+
+        jQuery(document).ready(function () {
+            $('[data-toggle=modal]').on('click', function (e) {
+                let $target = $($(this).data('target'));
+                $target.data('triggered', true);
+                setTimeout(function () {
+                    if ($target.data('triggered')) {
+                        $target.modal('show').data('triggered', false);
+                    };
+                }, 1000); // milliseconds
+                return false;
+            });
+
+            document.querySelectorAll('a.js-update').forEach(function (comment) {
+                comment.addEventListener('click', onClickCommentUpdate);
+            })
+
+
+        })
 
 
     }).catch(function (error) {
