@@ -8,7 +8,7 @@
 <div class="container">
 
     <div class="comment row">
-        <div class="container-pp col-xl-2">
+        <div class="container-pp pl-5 col-xl-2">
             <a class="comment_avatar ml-3" href="{{path('user_profil', {'username': app.user.username})}}">
                 {% if user.profilPicture %}
                 <img alt="Page img" src="{{vich_uploader_asset(user, 'imageFile') | imagine_filter('pp')}}" alt="Page img">

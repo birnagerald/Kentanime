@@ -104,6 +104,7 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->roles = ["ROLE_USER"];
     }
 
     public function getId() : ? int
@@ -140,7 +141,7 @@ class User implements UserInterface
         }
 
 
-        return array_unique($roles);
+        return $roles;
     }
 
     public function setRoles(array $roles) : self
