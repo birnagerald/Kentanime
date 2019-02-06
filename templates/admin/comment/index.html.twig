@@ -35,7 +35,7 @@
 
             <tr>
                 <td>{{ comment.user.username }}</td>
-                <td>{{ comment.content }}</td>
+                <td>{{ comment.content|length > 50 ? (comment.content|slice(0, 70) ~ '...') : comment.content }}</td>
                 <td><a href="{{ path('news_show', {id: comment.post.id}) }}">{{ comment.post.title }}</a></td>
 
                 <td><a href="{{ path('admin_comment_edit', {id: comment.id}) }}" class="btn btn-secondary">Éditer</a>
