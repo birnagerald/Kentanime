@@ -5,22 +5,38 @@ namespace App\Controller\Admin;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminPostController extends AbstractController
 {
     /**
+     * Undocumented function
+     * 
      * @Route("/admin/post", name="admin_post_index")
+     *
+     * @param PostRepository $repo
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return void
      */
-    public function index(PostRepository $repo)
+    public function index(PostRepository $repo, PaginatorInterface $paginator, Request $request)
     {
+        $posts = $paginator->paginate(
+            $repo->createQuery(),
 
-        $posts = $repo->findAll();
-        return $this->render('admin/post/index.html.twig', compact('posts'));
+            $request->query->getInt('page', 1),
+            5
+        );
+
+
+        return $this->render('admin/post/index.html.twig', [
+            'posts' => $posts,
+        ]);
     }
 
     /**
@@ -31,7 +47,8 @@ class AdminPostController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      */
 
-    function new (Request $request, ObjectManager $em, Security $security) {
+    function new(Request $request, ObjectManager $em, Security $security)
+    {
         $post = new Post;
         $user = $security->getUser();
 

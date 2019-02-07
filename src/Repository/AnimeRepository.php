@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Anime;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Anime|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,18 @@ class AnimeRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Anime::class);
+    }
+
+
+    /**
+     * @return Query
+     */
+    public function createQuery() : Query
+    {
+        return $this->createQueryBuilder('a')
+
+            ->getQuery();
+
     }
 
     // /**
@@ -34,7 +47,7 @@ class AnimeRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+     */
 
     /*
     public function findOneBySomeField($value): ?Anime
@@ -46,5 +59,5 @@ class AnimeRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+     */
 }

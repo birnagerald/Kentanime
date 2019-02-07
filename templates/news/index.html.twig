@@ -13,10 +13,12 @@
         </div>
 
     </div>
+    <div class="container">
+        {% for post in posts|reverse %}
+        {% include 'news/_post.html.twig' %}
+        {% endfor %}
+    </div>
 
-    {% for post in posts|reverse %}
-    {% include 'news/_post.html.twig' %}
-    {% endfor %}
 
 </div>
 {% endblock %}

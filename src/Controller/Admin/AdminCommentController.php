@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,18 +15,65 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminCommentController extends AbstractController
 {
     /**
+     * List of all comments
+     *
      * @Route("/admin/comment", name="admin_comment_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
+     * 
+     * @param CommentRepository $commentRepo
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
      */
-    public function index(CommentRepository $commentRepo) : Response
+    public function index(CommentRepository $commentRepo, PaginatorInterface $paginator, Request $request) : Response
     {
+        // return $this->render('admin/comment/index.html.twig', [
+        //     'comments' => $commentRepo->findBy(
+        //         array('report' => 1), // Critere
+        //         array('updatedAt' => 'desc')  // Tri
+        //     )
+        // ]);
+
+
+        $comments = $paginator->paginate(
+            $commentRepo->createQuery(),
+
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('admin/comment/index.html.twig', [
-            'comments' => $commentRepo->findBy(
-                array('report' => 1), // Critere
-                array('updatedAt' => 'desc')  // Tri
-            )
+            'comments' => $comments,
         ]);
     }
+
+    /**
+     * List of all reported comments
+     *
+     * @Route("/admin/comment/report", name="admin_commentReport_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * 
+     * @param CommentRepository $commentRepo
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+
+    public function indexReport(CommentRepository $commentRepo, PaginatorInterface $paginator, Request $request) : Response
+    {
+
+        $comments = $paginator->paginate(
+            $commentRepo->createQueryReport(),
+
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('admin/comment/indexReport.html.twig', [
+            'comments' => $comments,
+        ]);
+    }
+
 
     /**
      * Edit a comment

@@ -18,8 +18,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Username</th>
+                <th>{{ knp_pagination_sortable(users, 'ID', 'u.id')}}</th>
+                <th>{{ knp_pagination_sortable(users, 'Pseudo', 'u.username')}}</th>
                 <th>Roles</th>
                 <th>Actions</th>
             </tr>
@@ -46,5 +46,11 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <div class="container pagination">
+        <div class="row mx-auto">
+            {{ knp_pagination_render(users) }}
+        </div>
+    </div>
 </div>
 {% endblock %}

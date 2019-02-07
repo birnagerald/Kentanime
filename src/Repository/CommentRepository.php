@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Comment|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,33 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+
+    /**
+     * @return Query
+     */
+    public function createQuery() : Query
+    {
+        return $this->createQueryBuilder('c')
+
+            ->getQuery();
+
+    }
+
+    /**
+     * @return Query
+     */
+    public function createQueryReport() : Query
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.report = 1')
+            ->orderBy('c.updatedAt', 'DESC')
+            ->getQuery();
+
+    }
+
+
+
+    
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */
@@ -34,7 +62,7 @@ class CommentRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+     */
 
     /*
     public function findOneBySomeField($value): ?Comment
@@ -46,5 +74,5 @@ class CommentRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+     */
 }

@@ -5,11 +5,12 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Require ROLE_ADMIN for *every* controller method in this class.
@@ -20,12 +21,28 @@ class AdminUserController extends AbstractController
 {
 
     /**
+     * Undocumented function
+     *
      * @Route("/admin/users", name="admin_user_index", methods={"GET"})
+     * 
+     * @param UserRepository $userRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
      */
-    public function index(UserRepository $userRepository) : Response
+    public function index(UserRepository $userRepository, PaginatorInterface $paginator, Request $request) : Response
     {
+
+        $users = $paginator->paginate(
+            $userRepository->createQuery(),
+
+            $request->query->getInt('page', 1),
+            10
+        );
+
+
         return $this->render('admin/user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $users,
         ]);
     }
 

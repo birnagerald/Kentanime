@@ -5,25 +5,35 @@ namespace App\Controller\Admin;
 use App\Entity\Anime;
 use App\Form\AnimeType;
 use App\Repository\AnimeRepository;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminAnimeController extends AbstractController
 {
     /**
      * @Route("/admin/anime", name="admin_anime_index")
      * @param AnimeRepository $repo
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
      */
-    public function index(AnimeRepository $repo)
+    public function index(AnimeRepository $repo, PaginatorInterface $paginator, Request $request) : Response
     {
 
-        $animes = $repo->findAll();
+        $animes = $paginator->paginate(
+            $repo->createQuery(),
 
-        return $this->render('admin/anime/index.html.twig', compact('animes'));
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('admin/anime/index.html.twig', [
+            'animes' => $animes,
+        ]);
     }
 
     /**
@@ -33,7 +43,8 @@ class AdminAnimeController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      */
 
-    function new (Request $request, ObjectManager $em) {
+    function new(Request $request, ObjectManager $em)
+    {
         $anime = new Anime;
         $form = $this->createForm(AnimeType::class, $anime);
         $form->handleRequest($request);

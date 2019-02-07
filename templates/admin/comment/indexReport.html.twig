@@ -8,7 +8,7 @@
 
 <div class="container mt-4">
 
-    <h1>Gérer les commentaires</h1>
+    <h1>Gérer les commentaires signalé</h1>
 
     {% for message in app.flashes('success') %}
 
@@ -18,7 +18,7 @@
 
     {% endfor %}
 
-    <h2>Liste des commentaires</h2>
+    <h2>Liste des commentaires signalé</h2>
 
     <table class="table table-striped">
         <thead>
@@ -64,7 +64,7 @@
 
         </tbody>
     </table>
-    <a href="{{ path('admin_commentReport_index') }} " class="btn btn-secondary">Voir les commentaires signalés</a>
+    <a href="{{ path('admin_comment_index') }} " class="btn btn-secondary">Retour à la liste des commentaires</a>
     <div class="container pagination">
         <div class="row mx-auto">
             {{ knp_pagination_render(comments) }}
