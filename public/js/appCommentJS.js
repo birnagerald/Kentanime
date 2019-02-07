@@ -31,7 +31,7 @@ jQuery(document).ready(function () {
             if ($target.data('triggered')) {
                 $target.modal('show').data('triggered', false);
             };
-        }, 1000); // milliseconds
+        }, 1500); // milliseconds
         return false;
     });
     document.querySelectorAll('a.js-report').forEach(function (comment) {
@@ -78,7 +78,7 @@ jQuery(document).ready(function () {
             if ($target.data('triggered')) {
                 $target.modal('show').data('triggered', false);
             };
-        }, 1000); // milliseconds
+        }, 1500); // milliseconds
         return false;
     });
     document.querySelectorAll('a.js-delete').forEach(function (comment) {
@@ -104,11 +104,10 @@ function onClickCommentNew(e) {
         $('.modal-body').html(response.data.message);
 
         $pageResponse = (response.data.response.content);
-        $test = $pageResponse.split('<div class="commentaire container mt-5">');
-        $test2 = $test[1].split('<span class="js-limit">');
-        console.log($test2[0]);
+        $responseData = $pageResponse.split('<div class="commentaire container mt-5">');
+        $responseData2 = $responseData[1].split('<span class="js-limit">');
 
-        $('div.commentaire').html(($test2[0]));
+        $('div.commentaire').html(($responseData2[0]));
 
         // --------------------Report---------------------- //
 
@@ -121,7 +120,7 @@ function onClickCommentNew(e) {
                     if ($target.data('triggered')) {
                         $target.modal('show').data('triggered', false);
                     };
-                }, 1000); // milliseconds
+                }, 1500); // milliseconds
                 return false;
             });
             document.querySelectorAll('a.js-report').forEach(function (comment) {
@@ -142,7 +141,7 @@ function onClickCommentNew(e) {
                     if ($target.data('triggered')) {
                         $target.modal('show').data('triggered', false);
                     };
-                }, 1000); // milliseconds
+                }, 1500); // milliseconds
                 return false;
             });
             document.querySelectorAll('a.js-delete').forEach(function (comment) {
@@ -161,7 +160,7 @@ function onClickCommentNew(e) {
                     if ($target.data('triggered')) {
                         $target.modal('show').data('triggered', false);
                     };
-                }, 1000); // milliseconds
+                }, 1500); // milliseconds
                 return false;
             });
 
@@ -213,7 +212,7 @@ jQuery(document).ready(function () {
             if ($target.data('triggered')) {
                 $target.modal('show').data('triggered', false);
             };
-        }, 1000); // milliseconds
+        }, 1500); // milliseconds
         return false;
     });
 
@@ -231,8 +230,8 @@ function onClickCommentUpdate(e) {
     const url = this.href;
 
     axios.get(url).then(function (response) {
-        test = $("#comment__token").val();
-        CommentVarUpdate = "<div class='comment-main col-xl-10 mt-3 js-comment-update'><form id='js-form-comment-update' name='comment' method='post'><div class='form-group'><textarea id='comment_content' name='comment[content]' required='required' class='form-control'>" + response.data.formContent + "</textarea></div><button data-toggle='modal' data-target='#Modal' data-url=" + url + " class='btn btn-secondary Comments-logBtn float-right js-edit'>Modifier</button><input type='hidden' id='comment__token' name='comment[_token]' value='" + test + "'></form></div>";
+        token = $("#comment__token").val();
+        CommentVarUpdate = "<div class='comment-main col-xl-10 mt-3 js-comment-update'><form id='js-form-comment-update' name='comment' method='post'><div class='form-group'><textarea id='comment_content' name='comment[content]' required='required' class='form-control'>" + response.data.formContent + "</textarea></div><button data-toggle='modal' data-target='#Modal' data-url=" + url + " class='btn btn-secondary Comments-logBtn float-right js-edit'>Modifier</button><input type='hidden' id='comment__token' name='comment[_token]' value='" + token + "'></form></div>";
         commentId = response.data.commentId;
         $('div.comment-content-' + commentId).replaceWith(CommentVarUpdate);
 
@@ -276,7 +275,7 @@ function onClickCommentUpdate(e) {
                     if ($target.data('triggered')) {
                         $target.modal('show').data('triggered', false);
                     };
-                }, 1000); // milliseconds
+                }, 1500); // milliseconds
                 return false;
             });
             document.querySelector('button.js-edit').addEventListener('click', onClickCommentUpdate2);
@@ -309,7 +308,7 @@ jQuery(document).ready(function () {
             if ($target.data('triggered')) {
                 $target.modal('show').data('triggered', false);
             };
-        }, 1000); // milliseconds
+        }, 1500); // milliseconds
         return false;
     });
 

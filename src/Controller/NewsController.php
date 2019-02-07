@@ -63,7 +63,6 @@ class NewsController extends AbstractController
                     $commentResponse = ['content' => $comment->getContent(), 'id' => $comment->getId(), 'user' => $user->getUsername(), 'createdAt' => $comment->getCreatedAt()];
                     return $this->json([
                         'message' => 'Commentaire bien ajouté',
-                        'comment' => json_encode($commentResponse),
                         'response' => $this->render('news/show.html.twig', [
                             'post' => $post,
                             'user' => $user,
