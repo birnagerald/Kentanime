@@ -12,11 +12,15 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/css/appdev.css') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('/css/images/favicon.png') }}"" />
     {% endblock %}
 </head>
 
 
-<body id="{% block body_id %}{% endblock %}">
+<body id="
+        {% block body_id %}{% endblock %}">
 
     {% block header %}
     <header>
@@ -139,6 +143,6 @@
     {% endblock %}
 
 
-</body>
+    </body>
 
 </html>
