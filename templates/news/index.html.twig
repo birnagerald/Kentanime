@@ -13,6 +13,15 @@
         </div>
 
     </div>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <h1 class="breadcrumb-title">Actualité</h1>
+            </li>
+        </ol>
+    </nav>
     <div class="container">
         {% for post in posts|reverse %}
         {% include 'news/_post.html.twig' %}
