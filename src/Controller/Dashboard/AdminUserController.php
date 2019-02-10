@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Dashboard;
 
 use App\Entity\User;
 use App\Form\UserType;
@@ -23,7 +23,7 @@ class AdminUserController extends AbstractController
     /**
      * Undocumented function
      *
-     * @Route("/admin/users", name="admin_user_index", methods={"GET"})
+     * @Route("/dashboard/users", name="admin_user_index", methods={"GET"})
      * 
      * @param UserRepository $userRepository
      * @param PaginatorInterface $paginator
@@ -48,7 +48,7 @@ class AdminUserController extends AbstractController
 
 
     /**
-     * @Route("/admin/user/{id}", name="admin_user_show", methods={"GET"})
+     * @Route("/dashboard/user/{id}", name="admin_user_show", methods={"GET"})
      */
     public function show(User $user) : Response
     {
@@ -58,7 +58,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/{id}/edit", name="admin_user_edit", methods={"GET","POST"})
+     * @Route("/dashboard/user/{id}/edit", name="admin_user_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, User $user) : Response
@@ -82,7 +82,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/{id}", name="admin_user_delete", methods={"DELETE"})
+     * @Route("/dashboard/user/{id}", name="admin_user_delete", methods={"DELETE"})
      * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function delete(Request $request, User $user) : Response

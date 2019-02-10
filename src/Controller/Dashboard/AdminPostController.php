@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Dashboard;
 
 use App\Entity\Post;
 use App\Form\PostType;
@@ -17,7 +17,7 @@ class AdminPostController extends AbstractController
     /**
      * Undocumented function
      * 
-     * @Route("/admin/post", name="admin_post_index")
+     * @Route("/dashboard/post", name="admin_post_index")
      *
      * @param PostRepository $repo
      * @param PaginatorInterface $paginator
@@ -40,7 +40,7 @@ class AdminPostController extends AbstractController
     }
 
     /**
-     * @route("/admin/post/new", name="admin_post_new")
+     * @route("/dashboard/post/new", name="admin_post_new")
      * @param Request $request
      * @param ObjectManager $em
      * @param Security $security
@@ -72,7 +72,7 @@ class AdminPostController extends AbstractController
     }
 
     /**
-     * @Route("/admin/post/edit/{id}", name="admin_post_edit", methods="GET|POST")
+     * @Route("/dashboard/post/edit/{id}", name="admin_post_edit", methods="GET|POST")
      * @param Post $post
      * @param Request $request
      * @param ObjectManager $em
@@ -97,7 +97,7 @@ class AdminPostController extends AbstractController
     }
 
     /**
-     * @Route("/admin/post/delete/{id}", name="admin_post_delete", methods="DELETE")
+     * @Route("/dashboard/post/delete/{id}", name="admin_post_delete", methods="DELETE")
      * @param Post $post
      * @param Request $request
      * @param ObjectManager $em
