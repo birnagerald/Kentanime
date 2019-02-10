@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -av ./ u93755699@home739644471.1and1-data.host:~/kentanime --include=vendor --include=public/.htaccess --exclude-from=.gitignore --exclude=".*"

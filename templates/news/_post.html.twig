@@ -25,7 +25,7 @@
                     {{ post.createdAt | date('d/m/y') }}</span>
             </p>
             <p class="post-metadata-preview">
-                {{ post.content|length > 200 ? (post.content|slice(0, 140) ~ '...')|striptags|raw : post.content|raw }}</p>
+                {{ post.content|length > 300 ? (post.content|slice(0, 250) ~ '...')|striptags|raw : post.content|raw }}</p>
         </article>
     </div>
 </div>
