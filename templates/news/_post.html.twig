@@ -3,9 +3,9 @@
         <div class="col-xl-3">
             <div class="container-thumbnail d-flex justify-content-center">
                 {% if post.filename %}
-                <img src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}">
+                <img src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}" alt="thumb-post">
                 {% else %}
-                <img src="{{ asset('css/images/article-thumb.jpg') | imagine_filter('thumb')}}">
+                <img src="{{ asset('css/images/article-thumb.jpg') | imagine_filter('thumb')}}" alt=" thumb-post">
                 {% endif %}
             </div>
         </div>
