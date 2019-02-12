@@ -5,7 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'fr'
-    session_max_idle_time: 1800 // 30 * 60 = 1800 seconds
+    session_max_idle_time: 1800
 
 services:
     # default configuration for services in *this* file
