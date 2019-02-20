@@ -65,8 +65,4 @@ DirectoryIndex index.php
         RedirectMatch 307 ^/$ /index.php/
         # RedirectTemp cannot be used instead
     </IfModule>
-<<<<<<< HEAD
 </IfModule>
-=======
-</IfModule>
->>>>>>> 9c695e88c5b413d88ece3b1ea3c4ed545ecd2d89
