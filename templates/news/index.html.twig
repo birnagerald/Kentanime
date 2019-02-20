@@ -12,7 +12,8 @@ endblock %}
 
     <div class="container-fluid p-l-r-0">
         <div class="container-banniere">
-            <img class="w-100" src="{{ asset('css/images/actualite-banner.jpg') }}" alt="Page img">
+            <img class="w-100" src="{{ asset('css/images/actualite-banner-custom.jpg') | imagine_filter('thumb3') }}"
+                alt="Page img">
         </div>
 
     </div>
