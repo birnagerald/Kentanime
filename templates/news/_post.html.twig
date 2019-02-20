@@ -3,9 +3,9 @@
         <div class="col-xl-3">
             <div class="container-thumbnail d-flex justify-content-center">
                 {% if post.filename %}
-                <img src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}">
+                <img src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}" alt="thumb-post">
                 {% else %}
-                <img src="{{ asset('css/images/article-thumb.jpg') | imagine_filter('thumb')}}">
+                <img src="{{ asset('css/images/article-thumb.jpg') | imagine_filter('thumb')}}" alt=" thumb-post">
                 {% endif %}
             </div>
         </div>
@@ -25,7 +25,7 @@
                     {{ post.createdAt | date('d/m/y') }}</span>
             </p>
             <p class="post-metadata-preview">
-                {{ post.content|length > 200 ? (post.content|slice(0, 140) ~ '...')|striptags|raw : post.content|raw }}</p>
+                {{ post.content|length > 300 ? (post.content|slice(0, 250) ~ '...')|striptags|raw : post.content|raw }}</p>
         </article>
     </div>
 </div>

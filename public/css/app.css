@@ -112,7 +112,7 @@ header .locales a {
 .body-container #main h2 {
     margin-top: 0;
     font-size: 22px;
-    font-weight: 1000;
+    font-weight: bold;
     color: black;
 
 }
@@ -131,7 +131,7 @@ header .locales a {
 .body-container #main h4 {
     margin-top: 0;
     font-size: 22px;
-    font-weight: 1000;
+    font-weight: bold;
     margin-top: 3px;
 }
 
@@ -172,26 +172,26 @@ footer #footer-ressources {
 .body-container #main .title-show {
     margin-top: 0;
     font-size: 40px;
-    font-weight: 1000;
+    font-weight: bold;
     margin-bottom: 1.5em !important;
 
 }
 
 .post-metadata .metadata-author {
     margin-right: 0.5em;
-    font-weight: 1000;
+    font-weight: bold;
 }
 
 .post-metadata .metadata-date {
     margin-right: 0.5em;
-    font-weight: 1000;
+    font-weight: bold;
 }
 
 .post-metadata .metadata-categories {
     border: 1px solid grey;
     background-color: #0000003d;
     text-align: center;
-    font-weight: 1000;
+    font-weight: bold;
     padding: 0 2px 2px 2px;
     color: white;
 }
@@ -200,7 +200,7 @@ footer #footer-ressources {
     border: 1px solid grey;
     background-color: #0000003d;
     text-align: center;
-    font-weight: 1000;
+    font-weight: bold;
     padding: 0 2px 2px 2px;
     color: white;
 }
@@ -273,7 +273,7 @@ footer #footer-ressources {
 }
 
 #main-page>div>p {
-    font-weight: 1000;
+    font-weight: bold;
     font-size: 1.2em;
 }
 
@@ -284,13 +284,13 @@ footer #footer-ressources {
 }
 
 #synopsis {
-    font-weight: 1000;
+    font-weight: bold;
     font-size: 1.5em;
     text-align: center;
 }
 
 .ddl-episode-text {
-    font-weight: 1000;
+    font-weight: bold;
     padding-top: 5px;
     margin-right: 15px;
 }
@@ -310,7 +310,7 @@ footer #footer-ressources {
 
 .dropdown-item {
     color: #fff;
-    font-weight: 1000;
+    font-weight: bold;
 }
 
 .dropdown-item:hover {
@@ -327,7 +327,7 @@ footer #footer-ressources {
 }
 
 .board-libéllé {
-    font-weight: 1000;
+    font-weight: bold;
     font-size: 1.5em;
 }
 
@@ -426,7 +426,7 @@ table {
     color: rgb(0, 0, 0);
     font-size: 19px;
     margin-bottom: 16px;
-    font-weight: 1000;
+    font-weight: bold;
 }
 
 .post-metadata .metadata {
@@ -435,7 +435,7 @@ table {
 }
 
 .post-metadata-preview {
-    font-weight: 1000;
+    font-weight: bold;
 }
 
 
@@ -507,7 +507,7 @@ body#blog_index .post-metadata {
 
 body#blog_index .post-metadata-page {
     font-size: 1.2em;
-    font-weight: 1000;
+    font-weight: bold;
 }
 
 body#blog_index .post-tags .label-default {
@@ -638,7 +638,7 @@ li {
    ------------------------------------------------------------------------- */
 
 .rs-sidebar {
-    font-weight: 1000;
+    font-weight: bold;
     text-align: center;
     border: 4px solid black;
     margin-top: 10%;

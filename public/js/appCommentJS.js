@@ -216,8 +216,11 @@ jQuery(document).ready(function () {
         return false;
     });
 
-    button = document.querySelector('button.js-new');
-    button.addEventListener('click', onClickCommentNew);
+    if ($('button.js-new').length) {
+        button = document.querySelector('button.js-new');
+        button.addEventListener('click', onClickCommentNew);
+    }
+
 
 
 })

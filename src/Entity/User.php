@@ -25,7 +25,7 @@ class User implements UserInterface
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer") 
      */
     private $id;
 
@@ -69,7 +69,7 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json_array")
      */
     private $roles = [];
 
@@ -107,7 +107,7 @@ class User implements UserInterface
         $this->roles = ["ROLE_USER"];
     }
 
-    public function getId() : ? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -117,12 +117,12 @@ class User implements UserInterface
      *
      * @see UserInterface
      */
-    public function getUsername() : string
+    public function getUsername(): string
     {
         return (string)$this->username;
     }
 
-    public function setUsername(string $username) : self
+    public function setUsername(string $username): self 
     {
         $this->username = $username;
 
@@ -132,7 +132,7 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles() : array
+    public function getRoles(): array
     {
         $roles = $this->roles;
         if (empty($roles)) {
@@ -144,7 +144,7 @@ class User implements UserInterface
         return $roles;
     }
 
-    public function setRoles(array $roles) : self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -154,12 +154,12 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getPassword() : string
+    public function getPassword(): string
     {
         return (string)$this->password;
     }
 
-    public function setPassword(string $password) : self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
@@ -186,12 +186,12 @@ class User implements UserInterface
     /**
      * @return Collection|Post[]
      */
-    public function getPosts() : Collection
+    public function getPosts(): Collection
     {
         return $this->posts;
     }
 
-    public function addPost(Post $post) : self
+    public function addPost(Post $post): self
     {
         if (!$this->posts->contains($post)) {
             $this->posts[] = $post;
@@ -201,7 +201,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removePost(Post $post) : self
+    public function removePost(Post $post): self
     {
         if ($this->posts->contains($post)) {
             $this->posts->removeElement($post);
@@ -217,12 +217,12 @@ class User implements UserInterface
     /**
      * @return Collection|Comment[]
      */
-    public function getComments() : Collection
+    public function getComments(): Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comment $comment) : self
+    public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
@@ -232,7 +232,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeComment(Comment $comment) : self
+    public function removeComment(Comment $comment): self
     {
         if ($this->comments->contains($comment)) {
             $this->comments->removeElement($comment);
@@ -245,24 +245,24 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCreatedAt() : ? \DateTimeInterface
+    public function getCreatedAt(): ? \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt) : self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt() : ? \DateTimeInterface
+    public function getUpdatedAt(): ? \DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(? \DateTimeInterface $updatedAt) : self
+    public function setUpdatedAt(? \DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -274,7 +274,7 @@ class User implements UserInterface
      *
      * @return null|string
      */
-    public function getProfilPicture() : ? string
+    public function getProfilPicture(): ? string
     {
         return $this->profilPicture;
     }
@@ -285,7 +285,7 @@ class User implements UserInterface
      * @param null|string $profilPicture
      * @return User
      */
-    public function setProfilPicture(? string $profilPicture) : User
+    public function setProfilPicture(? string $profilPicture): User
     {
         $this->profilPicture = $profilPicture;
         return $this;
@@ -297,7 +297,7 @@ class User implements UserInterface
      *
      * @return null|File
      */
-    public function getImageFile() : ? File
+    public function getImageFile(): ? File
     {
         return $this->imageFile;
     }
@@ -308,7 +308,7 @@ class User implements UserInterface
      * @param null|File $imagefile
      * @return User
      */
-    public function setImageFile(? File $imageFile) : User
+    public function setImageFile(? File $imageFile): User
     {
         $this->imageFile = $imageFile;
 
@@ -341,5 +341,4 @@ class User implements UserInterface
 
         return $serialize_fields;
     }
-
 }

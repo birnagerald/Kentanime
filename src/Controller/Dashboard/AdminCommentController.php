@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Dashboard;
 
 use App\Entity\Comment;
 use App\Form\CommentType;
@@ -17,7 +17,7 @@ class AdminCommentController extends AbstractController
     /**
      * List of all comments
      *
-     * @Route("/admin/comment", name="admin_comment_index", methods={"GET"})
+     * @Route("/dashboard/comment", name="admin_comment_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      * 
      * @param CommentRepository $commentRepo
@@ -50,7 +50,7 @@ class AdminCommentController extends AbstractController
     /**
      * List of all reported comments
      *
-     * @Route("/admin/comment/report", name="admin_commentReport_index", methods={"GET"})
+     * @Route("/dashboard/comment/report", name="admin_commentReport_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      * 
      * @param CommentRepository $commentRepo
@@ -78,7 +78,7 @@ class AdminCommentController extends AbstractController
     /**
      * Edit a comment
      * 
-     * @Route("/admin/comment/{id}/edit", name="admin_comment_edit", methods={"GET","POST"})
+     * @Route("/dashboard/comment/{id}/edit", name="admin_comment_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
@@ -106,7 +106,7 @@ class AdminCommentController extends AbstractController
     /**
      * Delete a comment
      * 
-     * @Route("/admin/comment/{id}", name="admin_comment_delete", methods={"DELETE"})
+     * @Route("/dashboard/comment/{id}", name="admin_comment_delete", methods={"DELETE"})
      * @IsGranted("ROLE_SUPER_ADMIN")
      *
      * @param Request $request

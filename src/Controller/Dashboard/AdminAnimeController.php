@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Dashboard;
 
 use App\Entity\Anime;
 use App\Form\AnimeType;
@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminAnimeController extends AbstractController
 {
     /**
-     * @Route("/admin/anime", name="admin_anime_index")
+     * @Route("/dashboard/anime", name="admin_anime_index")
      * @param AnimeRepository $repo
      * @param PaginatorInterface $paginator
      * @param Request $request
@@ -37,7 +37,7 @@ class AdminAnimeController extends AbstractController
     }
 
     /**
-     * @route("/admin/anime/new", name="admin_anime_new")
+     * @route("/dashboard/anime/new", name="admin_anime_new")
      * @param Request $request
      * @param ObjectManager $em
      * @return \Symfony\Component\HttpFoundation\Response
@@ -63,7 +63,7 @@ class AdminAnimeController extends AbstractController
     }
 
     /**
-     * @Route("/admin/anime/edit/{id}", name="admin_anime_edit", methods="GET|POST")
+     * @Route("/dashboard/anime/edit/{id}", name="admin_anime_edit", methods="GET|POST")
      * @param Anime $anime
      * @param Request $request
      * @param ObjectManager $em
@@ -88,7 +88,7 @@ class AdminAnimeController extends AbstractController
     }
 
     /**
-     * @Route("/admin/anime/delete/{id}", name="admin_anime_delete", methods="DELETE")
+     * @Route("/dashboard/anime/delete/{id}", name="admin_anime_delete", methods="DELETE")
      * @param Anime $anime
      * @param Request $request
      * @param ObjectManager $em

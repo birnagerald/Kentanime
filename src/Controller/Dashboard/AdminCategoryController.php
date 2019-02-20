@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Dashboard;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminCategoryController extends AbstractController
 {
     /**
-     * @Route("/admin/category", name="admin_category_index", methods={"GET"})
+     * @Route("/dashboard/category", name="admin_category_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function index(CategoryRepository $categoryRepository) : Response
@@ -25,7 +25,7 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/new", name="admin_category_new", methods={"GET","POST"})
+     * @Route("/dashboard/category/new", name="admin_category_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
     function new(Request $request) : Response
@@ -51,7 +51,7 @@ class AdminCategoryController extends AbstractController
     /**
      * Edit a category
      * 
-     * @Route("/admin/category/{id}/edit", name="admin_category_edit", methods={"GET","POST"})
+     * @Route("/dashboard/category/{id}/edit", name="admin_category_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
@@ -77,7 +77,7 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/{id}", name="admin_category_delete", methods={"DELETE"})
+     * @Route("/dashboard/category/{id}", name="admin_category_delete", methods={"DELETE"})
      * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function delete(Request $request, Category $category) : Response
