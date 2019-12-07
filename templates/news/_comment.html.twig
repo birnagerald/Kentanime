@@ -52,7 +52,7 @@
         <div class="row">
             <div class="div col-12">
                 <div class="row">
-                    <div class="container-pp col">
+                    <div class="container-pp col pr-0">
                         <a class="comment_avatar ml-3" href="{{path('user_profil', {'username': comment.user.username})}}">
                             {% if comment.user.profilPicture %}
                             <img alt="Page img" src="{{asset('images/profilePictures/'~ comment.user.profilPicture) | imagine_filter('pp')}}"
